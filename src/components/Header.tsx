@@ -32,7 +32,7 @@ export default function Header() {
 					</Link>
 				</li>
 				<li>
-					<Link className=" text-xl" href="/services/design">
+					<Link className=" text-xl " href="/services/design">
 						Design
 					</Link>
 				</li>
