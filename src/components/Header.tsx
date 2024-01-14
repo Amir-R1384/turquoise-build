@@ -51,7 +51,7 @@ export default function Header() {
 			<button onClick={() => setMenuOpen(prev => !prev)}>
 				<Image
 					alt="Menu"
-					src="/assets/icons/hamburger.svg"
+					src="/assets/images/hamburger.svg"
 					width={32}
 					height={23}
 					className="lg:hidden m-main"
