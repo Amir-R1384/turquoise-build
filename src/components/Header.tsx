@@ -12,7 +12,7 @@ export default function Header() {
 	useEffect(() => setMenuOpen(false), [pathname])
 
 	return (
-		<div className="  fixed bg-white lg:bg-transparent top-0 z-10 left-0 flex w-full justify-between items-center box-border h-headerHeight">
+		<div className="fixed bg-white lg:bg-transparent top-0 z-10 left-0 flex w-full justify-between items-center box-border h-headerHeight">
 			<div className="p-main bg-white flex gap-x-main items-center ">
 				<Image src="/assets/logos/logo.svg" alt="Logo image" width={31} height={31}></Image>
 				<div className="text-3xl">Turquoise Build</div>
@@ -22,7 +22,7 @@ export default function Header() {
 					menuOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'
 				} absolute flex flex-col gap-3 left-0 bg-white top-full px-main pb-main lg:scale-y-100 lg:opacity-100 origin-top overflow-hidden transition-all duration-500`}>
 				<li>
-					<Link className=" text-xl" href="/">
+					<Link className=" text-xl font-normal" href="/">
 						Home
 					</Link>
 				</li>
@@ -51,7 +51,7 @@ export default function Header() {
 			<button onClick={() => setMenuOpen(prev => !prev)}>
 				<Image
 					alt="Menu"
-					src="/assets/images/hamburger.svg"
+					src="/assets/icons/menu.svg"
 					width={32}
 					height={23}
 					className="lg:hidden m-main"

@@ -4,7 +4,7 @@
 
 @layer base {
 	* {
-		@apply font-light;
+		@apply font-extralight;
 	}
 
 	section {

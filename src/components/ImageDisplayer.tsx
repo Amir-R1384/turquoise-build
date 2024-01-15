@@ -1,36 +1,50 @@
+// Places a few randomly positioned images with a smooth animation + 1 image always centered
 'use client'
 
 import { imageStateAtom } from '@/atoms'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
+import config from '../../appConfig.json'
 
+const { imageDisplayerBackgroundImagesNum: bgImageNum } = config
+
+//! array length depends on bgImageNum
 const defaultPositions = {
-	x: [10, 50, 0, 60, 50],
-	y: [0, 10, 30, 20, 40]
+	x: [30, 60, 75, 25, 60], // This are based on the center of the images
+	y: [0, 15, 20, 40, 50] // This are based on the upper left corner of the images
 }
-const images = [0, 1, 2, 3, 4]
-let alreadyDisplayed = false
+const images = Array(bgImageNum) // [0,1,2,3,4...]
+	.fill(null)
+	.map((el, i) => i)
+
+let alreadyDisplayed = false // To not redo the display if already done once
 
 const positions: { x: number; y: number; imageIndex: number }[] = []
-for (let i = 0; i < 5; i++) {
-	const posIndex = Math.floor(Math.random() * defaultPositions.x.length)
-	const imageIndex = Math.floor(Math.random() * images.length)
 
-	positions.push({
-		x: defaultPositions.x[posIndex],
-		y: defaultPositions.y[posIndex],
-		imageIndex: images[imageIndex]
-	})
+function assignRandomPosAndImage() {
+	for (let i = 0; i < bgImageNum; i++) {
+		const posIndex = Math.floor(Math.random() * defaultPositions.x.length)
+		const imageIndex = Math.floor(Math.random() * images.length)
 
-	defaultPositions.x.splice(posIndex, 1)
-	defaultPositions.y.splice(posIndex, 1)
-	images.splice(imageIndex, 1)
+		positions.push({
+			x: defaultPositions.x[posIndex],
+			y: defaultPositions.y[posIndex],
+			imageIndex: images[imageIndex]
+		})
+
+		defaultPositions.x.splice(posIndex, 1)
+		defaultPositions.y.splice(posIndex, 1)
+		images.splice(imageIndex, 1)
+	}
 }
 
+assignRandomPosAndImage()
+
+// Adding the final image always in the center
 positions.push({
-	x: 30,
+	x: 50,
 	y: 20,
-	imageIndex: 5
+	imageIndex: bgImageNum
 })
 
 export default function ImageDisplayer() {
@@ -46,7 +60,7 @@ export default function ImageDisplayer() {
 			!interval &&
 			setInterval(() => {
 				setImageState(prev => {
-					if (prev.i === 6) {
+					if (prev.i >= bgImageNum + 1) {
 						clearInterval(interval)
 						setCacheImageState(prev)
 						alreadyDisplayed = true
@@ -68,7 +82,7 @@ export default function ImageDisplayer() {
 	useEffect(() => updateImageState(), [])
 
 	return (
-		<section className="h-96 relative mt-main  w-full">
+		<section className="h-[400px] relative mt-main w-full overflow-x-clip">
 			{positions.map(({ x, y, imageIndex }, i) => (
 				<CustomImage
 					key={i}
@@ -93,8 +107,6 @@ interface Props {
 	order: number
 }
 
-console.log(positions)
-
 function CustomImage({ x, y, imageIndex, imageState, cacheImageState, order }: Props) {
 	const state = alreadyDisplayed ? cacheImageState.images[order] : imageState.images[order]
 	console.log(order, imageIndex)
@@ -108,7 +120,7 @@ function CustomImage({ x, y, imageIndex, imageState, cacheImageState, order }: P
 				backgroundClip: 'content-box'
 			}}
 			className={
-				'absolute bg-center bg-cover w-[400px] box-content h-[400px] border-2 border-transparent transition-all duration-1000 ' +
+				'absolute bg-center -translate-x-1/2 bg-cover w-[min(400px,50vw)] box-content h-[min(400px,50vw)] border-2 border-transparent transition-all duration-1000 ' +
 				`${
 					state === 'visible'
 						? '!border-stone-500 border-2 shadow-imageDisplayer'

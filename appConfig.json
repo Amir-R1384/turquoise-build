@@ -1,4 +1,5 @@
 {
 	"langs": ["en", "fr"],
-	"defaultLang": "en"
+	"defaultLang": "en",
+	"imageDisplayerBackgroundImagesNum": 5
 }
