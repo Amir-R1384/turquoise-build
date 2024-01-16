@@ -27,7 +27,7 @@ export default function RootLayout({
 			<body className={source_serif_4.className}>
 				<Main>
 					<Header />
-					<main className="mt-headerHeight  mx-auto max-w-screen-lg">{children}</main>
+					<main className="my-headerHeight mx-auto max-w-screen-lg">{children}</main>
 				</Main>
 			</body>
 		</html>

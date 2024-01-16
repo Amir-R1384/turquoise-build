@@ -6,6 +6,7 @@ const config: Config = {
 		extend: {
 			spacing: {
 				main: '1.25rem',
+				pageTopPadding: '2.5rem',
 				headerHeight: '4.5rem'
 			},
 			boxShadow: {
@@ -13,6 +14,6 @@ const config: Config = {
 			}
 		}
 	},
-	plugins: []
+	plugins: [require('@tailwindcss/container-queries')]
 }
 export default config

@@ -10,7 +10,7 @@ const { imageDisplayerBackgroundImagesNum: bgImageNum } = config
 
 //! array length depends on bgImageNum
 const defaultPositions = {
-	x: [30, 60, 75, 25, 60], // This are based on the center of the images
+	x: [30, 65, 75, 25, 60], // This are based on the center of the images
 	y: [0, 15, 20, 40, 50] // This are based on the upper left corner of the images
 }
 const images = Array(bgImageNum) // [0,1,2,3,4...]
@@ -109,7 +109,6 @@ interface Props {
 
 function CustomImage({ x, y, imageIndex, imageState, cacheImageState, order }: Props) {
 	const state = alreadyDisplayed ? cacheImageState.images[order] : imageState.images[order]
-	console.log(order, imageIndex)
 
 	return (
 		<div

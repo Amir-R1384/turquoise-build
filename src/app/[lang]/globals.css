@@ -11,3 +11,37 @@
 		@apply px-main;
 	}
 }
+
+@layer components {
+	.title {
+		@apply text-4xl text-center;
+	}
+
+	.button {
+		@apply border hover:shadow-md transition-[box-shadow] border-stone-500 rounded-full text-stone-700 shadow text-lg py-[0.5em] px-[1.5em];
+	}
+}
+
+@layer utilities {
+	.headerBlur {
+		@apply bg-white bg-opacity-60 backdrop-blur-md;
+	}
+}
+
+@media (hover: none) {
+	.project-banner-content {
+		@apply !bg-opacity-70 opacity-100 h-auto space-y-3 backdrop-blur-sm !p-3;
+	}
+
+	.project-banner-content h2 {
+		@apply text-[6cqw] font-normal text-stone-700;
+	}
+
+	.project-banner-content div {
+		@apply text-[4cqw] font-light;
+	}
+
+	.project-banner-content a {
+		@apply text-[4cqw] font-normal;
+	}
+}
