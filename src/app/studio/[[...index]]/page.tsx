@@ -10,8 +10,11 @@
  */
 
 import { NextStudio } from 'next-sanity/studio'
+import { notFound } from 'next/navigation'
 import config from '../../../../sanity.config'
 
 export default function StudioPage() {
-  return <NextStudio config={config} />
+	if (process.env.NODE_ENV === 'production') return notFound()
+
+	return <NextStudio config={config} />
 }
