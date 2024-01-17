@@ -1,27 +1,35 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import appConfig from '../../appConfig'
+import CustomLink from './CustomLink'
+const { defaultLang } = appConfig
 
-export default function Header() {
+export default function Header({ lang }: { lang: string }) {
 	const [menuOpen, setMenuOpen] = useState(false)
-	const pathname = usePathname()
+	const pathname = usePathname().match(lang !== defaultLang ? `(?<=${lang}).*` : `.*`)![0]
+	const [serviceMenuOpen, setServiceMenuOpen] = useState(false)
 
-	useEffect(() => setMenuOpen(false), [pathname])
+	useEffect(() => {
+		setServiceMenuOpen(false)
+		setMenuOpen(false)
+	}, [pathname])
+
+	const linkStyles = `text-xl font-light hover:!font-normal`
 
 	return (
 		<>
 			<div className="fixed top-0 left-0 z-10 w-full h-headerHeight flex justify-between items-center headerBlur box-border ">
-				<Link href="/" className="p-main flex gap-x-main items-center">
+				<CustomLink lang={lang} href="/" className="p-main flex gap-x-main items-center">
 					<Image
 						src="/assets/logos/logo.svg"
 						alt="Logo image"
 						width={31}
 						height={31}></Image>
 					<div className="text-2xl font-light">Turquoise Build</div>
-				</Link>
+				</CustomLink>
 
 				<button onClick={() => setMenuOpen(prev => !prev)}>
 					<Image
@@ -39,65 +47,74 @@ export default function Header() {
 						menuOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'
 					} fixed flex flex-col gap-3 left-0 z-10  headerBlur top-headerHeight px-main pb-main lg:scale-y-100 lg:opacity-100 origin-top transition-all duration-500`}>
 					<li>
-						<Link
-							className="text-xl"
-							href="/design"
-							style={{
-								fontWeight: pathname.startsWith('/design') ? 'normal' : 'lighter'
-							}}>
-							Design
-						</Link>
-					</li>
-					<li>
-						<Link
-							className="text-xl"
+						<CustomLink
+							lang={lang}
+							className={linkStyles}
 							href="/projects"
 							style={{
-								fontWeight: pathname.startsWith('/projects') ? 'normal' : 'lighter'
+								fontWeight: pathname.startsWith('/projects') ? 400 : 300
 							}}>
 							Projects
-						</Link>
+						</CustomLink>
 					</li>
+					<div
+						onMouseEnter={() => setServiceMenuOpen(true)}
+						onClick={() => setServiceMenuOpen(true)}
+						className="text-xl font-light group">
+						Services
+						<div
+							style={{ maxHeight: serviceMenuOpen ? '4rem' : 0 }}
+							className="pl-3 pt-1 flex flex-col gap-y-1 overflow-hidden transition-[max-height] duration-700">
+							<li>
+								<CustomLink
+									lang={lang}
+									href="/services/design"
+									className={linkStyles + ' !text-lg'}>
+									Design
+								</CustomLink>
+							</li>
+							<li>
+								<CustomLink
+									lang={lang}
+									href="/services/build"
+									className={linkStyles + ' !text-lg'}>
+									Build
+								</CustomLink>
+							</li>
+						</div>
+					</div>
 					<li>
-						<Link
-							className="text-xl"
-							href="/build"
-							style={{
-								fontWeight: pathname.startsWith('/build') ? 'normal' : 'lighter'
-							}}>
-							Build
-						</Link>
-					</li>
-
-					<li>
-						<Link
-							className="text-xl"
+						<CustomLink
+							lang={lang}
+							className={linkStyles}
 							href="/about"
 							style={{
-								fontWeight: pathname.startsWith('/about') ? 'normal' : 'lighter'
+								fontWeight: pathname.startsWith('/about') ? 'light' : 300
 							}}>
 							About Us
-						</Link>
+						</CustomLink>
 					</li>
 					<li>
-						<Link
-							className="text-xl"
+						<CustomLink
+							lang={lang}
+							className={linkStyles}
 							href="/faq"
 							style={{
-								fontWeight: pathname.startsWith('/faq') ? 'normal' : 'lighter'
+								fontWeight: pathname.startsWith('/faq') ? 'light' : 300
 							}}>
 							FAQ
-						</Link>
+						</CustomLink>
 					</li>
 					<li>
-						<Link
-							className="text-xl"
+						<CustomLink
+							lang={lang}
+							className={linkStyles}
 							href="/contact"
 							style={{
-								fontWeight: pathname.startsWith('/contact') ? 'normal' : 'lighter'
+								fontWeight: pathname.startsWith('/contact') ? 'light' : 300
 							}}>
 							Contact
-						</Link>
+						</CustomLink>
 					</li>
 				</ul>
 			</nav>

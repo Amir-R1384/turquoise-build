@@ -1,6 +1,6 @@
 import { expressAsYearAndMonth } from '@/util/date'
-import Link from 'next/link'
 import { urlForImage } from '../../sanity/lib/image'
+import CustomLink from './CustomLink'
 
 interface Props {
 	projectInfo: any
@@ -20,11 +20,12 @@ export default function ProjectBanner({ projectInfo, lang }: Props) {
 			<div className="space-y-10 z-10 project-banner-content bg-white hover:opacity-100 opacity-0 transition-opacity duration-300 p-main w-full h-full">
 				<h2 className="text-[10cqw]">{name}</h2>
 				<div className="text-[5cqw]">{date}</div>
-				<Link
+				<CustomLink
+					lang={lang}
 					href={`/projects/${urlName}`}
 					className="button bg-white bg-opacity-70 inline-block text-[5cqw] py-[0.2em] px-[1.5em]">
 					More about this project
-				</Link>
+				</CustomLink>
 			</div>
 			<div
 				className="absolute -z-10 top-0 left-0 w-full h-full bg-cover transition-all"

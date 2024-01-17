@@ -56,30 +56,29 @@ export default function ImageDisplayer() {
 	const [cacheImageState, setCacheImageState] = useRecoilState(imageStateAtom)
 
 	function updateImageState() {
-		interval =
-			!interval &&
-			setInterval(() => {
-				setImageState(prev => {
-					if (prev.i >= bgImageNum + 1) {
-						clearInterval(interval)
-						setCacheImageState(prev)
-						alreadyDisplayed = true
-						return prev
-					}
-					const { i, images } = prev
-					const newArray = [...images]
-					newArray[i] = 'visible'
-					if (newArray[i - 1]) newArray[i - 1] = 'blurred'
-					return {
-						i: i + 1,
-						images: newArray
-					}
-				})
-			}, 2000)
+		setImageState(prev => {
+			if (prev.i >= bgImageNum + 1) {
+				clearInterval(interval)
+				setCacheImageState(prev)
+				alreadyDisplayed = true
+				return prev
+			}
+			const { i, images } = prev
+			const newArray = [...images]
+			newArray[i] = 'visible'
+			if (newArray[i - 1]) newArray[i - 1] = 'blurred'
+			return {
+				i: i + 1,
+				images: newArray
+			}
+		})
 	}
 
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	useEffect(() => updateImageState(), [])
+	useEffect(() => {
+		updateImageState()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		interval = !interval && setInterval(updateImageState, 1500)
+	}, [])
 
 	return (
 		<section className="h-[400px] relative mt-main w-full overflow-x-clip">
