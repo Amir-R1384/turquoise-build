@@ -26,7 +26,7 @@ export default function RootLayout({
 		<html lang={params.lang}>
 			<body className={source_serif_4.className}>
 				<Main>
-					<Header />
+					<Header lang={params.lang} />
 					<main className="my-headerHeight mx-auto max-w-screen-lg">{children}</main>
 				</Main>
 			</body>
