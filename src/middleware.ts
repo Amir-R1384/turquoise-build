@@ -1,7 +1,7 @@
 import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
 import { NextResponse, type NextRequest } from 'next/server'
-import appConfig from '../appConfig.json'
+import appConfig from '../appConfig'
 
 const { langs, defaultLang } = appConfig
 
@@ -27,7 +27,7 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: ['/((?!api|_next/static|_next/image|favicon.ico|assets).*)']
+	matcher: ['/((?!api|_next/static|_next/image|favicon.ico|assets|studio).*)']
 }
 
 function getLang(request: NextRequest) {
