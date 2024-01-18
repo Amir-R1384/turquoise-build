@@ -10,7 +10,7 @@ import { defineField, defineType } from 'sanity'
 - More images
 */
 
-const petType = defineType({
+const projectType = defineType({
 	type: 'document',
 	name: 'project',
 	title: 'Project',
@@ -70,4 +70,4 @@ const petType = defineType({
 	]
 })
 
-export default petType
+export default projectType

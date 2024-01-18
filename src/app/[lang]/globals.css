@@ -14,7 +14,11 @@
 
 @layer components {
 	.title {
-		@apply text-4xl text-center font-thin;
+		@apply md:text-4xl text-3xl text-center font-thin;
+	}
+
+	.md-container {
+		@apply py-pageTopPadding max-w-screen-md mx-auto px-main;
 	}
 
 	.button {
@@ -22,7 +26,7 @@
 	}
 
 	.portable-text p {
-		@apply font-extralight;
+		@apply font-extralight text-base md:text-xl text-justify !leading-relaxed;
 	}
 }
 

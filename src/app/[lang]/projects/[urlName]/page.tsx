@@ -15,7 +15,7 @@ export default async function Project({ params }: PageProps) {
 	)}`
 
 	return (
-		<div className="@container pt-pageTopPadding px-main flex flex-col max-w-screen-md mx-auto gap-y-2 md:gap-y-5">
+		<div className="@container md-container  flex flex-col   gap-y-2 md:gap-y-5">
 			<h1 className="text-4xl font-thin md:text-5xl text-left">{name}</h1>
 			<div className="text-lg md:text-xl mb-5">{date}</div>
 			<div className="grid grid-cols-1 gap-main mb-5">
@@ -35,7 +35,7 @@ export default async function Project({ params }: PageProps) {
 				/>
 			</div>
 			<section className="px-0 space-y-4 mb-5">
-				<div className="text-md md:text-xl text-justify font-light !leading-relaxed portable-text">
+				<div className="portable-text">
 					<PortableText value={overview} />
 				</div>
 			</section>
@@ -65,7 +65,7 @@ export default async function Project({ params }: PageProps) {
 			</div>
 
 			<section className="px-0 space-y-4 mb-10">
-				<div className="text-md md:text-xl text-justify !leading-relaxed  portable-text">
+				<div className="portable-text">
 					<PortableText value={details} />
 				</div>
 			</section>
