@@ -1,13 +1,9 @@
-const config = {
-	// Language
-	langs: ['en', 'fr'],
-	defaultLang: 'en',
+// Language
+export const langs = ['en', 'fr']
+export const defaultLang = 'en'
 
-	// Image displayer
-	imageDisplayerBackgroundImagesNum: 5,
+// Image displayer
+export const imageDisplayerBackgroundImagesNum = 5
 
-	// Page transition
-	pageTransitionDuration: 300
-}
-
-export default config
+// Page transition
+export const pageTransitionDuration = 300

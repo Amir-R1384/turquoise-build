@@ -3,9 +3,8 @@
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import appConfig from '../../appConfig'
+import { defaultLang } from '../../appConfig'
 import CustomLink from './CustomLink'
-const { defaultLang } = appConfig
 
 export default function Header({ lang }: { lang: string }) {
 	const [menuOpen, setMenuOpen] = useState(false)
