@@ -77,7 +77,7 @@ export default function ImageDisplayer() {
 	useEffect(() => {
 		updateImageState()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-		interval = !interval && setInterval(updateImageState, 1500)
+		interval = !interval && setInterval(updateImageState, 2000)
 	}, [])
 
 	return (

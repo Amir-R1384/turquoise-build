@@ -17,7 +17,7 @@ export default function Header({ lang }: { lang: string }) {
 		setMenuOpen(false)
 	}, [pathname])
 
-	const linkStyles = `text-xl font-light hover:!font-normal`
+	const linkStyles = `text-xl hover:!font-light`
 
 	return (
 		<>
@@ -28,7 +28,7 @@ export default function Header({ lang }: { lang: string }) {
 						alt="Logo image"
 						width={31}
 						height={31}></Image>
-					<div className="text-2xl font-light">Turquoise Build</div>
+					<div className="text-2xl">Turquoise Build</div>
 				</CustomLink>
 
 				<button onClick={() => setMenuOpen(prev => !prev)}>
@@ -41,7 +41,7 @@ export default function Header({ lang }: { lang: string }) {
 					/>
 				</button>
 			</div>
-			<nav>
+			<nav onMouseLeave={() => setServiceMenuOpen(false)}>
 				<ul
 					className={` ${
 						menuOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'
@@ -52,7 +52,7 @@ export default function Header({ lang }: { lang: string }) {
 							className={linkStyles}
 							href="/projects"
 							style={{
-								fontWeight: pathname.startsWith('/projects') ? 400 : 300
+								fontWeight: pathname.startsWith('/projects') ? 300 : 200
 							}}>
 							Projects
 						</CustomLink>
@@ -60,7 +60,7 @@ export default function Header({ lang }: { lang: string }) {
 					<div
 						onMouseEnter={() => setServiceMenuOpen(true)}
 						onClick={() => setServiceMenuOpen(true)}
-						className="text-xl font-light group">
+						className="text-xl group">
 						Services
 						<div
 							style={{ maxHeight: serviceMenuOpen ? '4rem' : 0 }}
@@ -89,7 +89,7 @@ export default function Header({ lang }: { lang: string }) {
 							className={linkStyles}
 							href="/about"
 							style={{
-								fontWeight: pathname.startsWith('/about') ? 'light' : 300
+								fontWeight: pathname.startsWith('/about') ? 'light' : 200
 							}}>
 							About Us
 						</CustomLink>
@@ -100,7 +100,7 @@ export default function Header({ lang }: { lang: string }) {
 							className={linkStyles}
 							href="/faq"
 							style={{
-								fontWeight: pathname.startsWith('/faq') ? 'light' : 300
+								fontWeight: pathname.startsWith('/faq') ? 'light' : 200
 							}}>
 							FAQ
 						</CustomLink>
@@ -111,7 +111,7 @@ export default function Header({ lang }: { lang: string }) {
 							className={linkStyles}
 							href="/contact"
 							style={{
-								fontWeight: pathname.startsWith('/contact') ? 'light' : 300
+								fontWeight: pathname.startsWith('/contact') ? 'light' : 200
 							}}>
 							Contact
 						</CustomLink>

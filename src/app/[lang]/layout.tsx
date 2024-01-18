@@ -1,10 +1,14 @@
 import Header from '@/components/Header'
 import Main from '@/components/Main'
 import type { Metadata } from 'next'
-import { Source_Serif_4 } from 'next/font/google'
+import { Raleway, Source_Serif_4 } from 'next/font/google'
 import './globals.css'
 
 const source_serif_4 = Source_Serif_4({ subsets: ['latin'], weight: ['200', '300', '400', '500'] })
+const raleway = Raleway({
+	subsets: ['latin'],
+	weight: ['100', '200', '300', '400', '500', '600']
+})
 
 export const metadata: Metadata = {
 	title: 'Turquoise Build',
@@ -24,7 +28,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang={params.lang}>
-			<body className={source_serif_4.className}>
+			<body className={raleway.className}>
 				<Main>
 					<Header lang={params.lang} />
 					<main className="my-headerHeight mx-auto max-w-screen-lg">{children}</main>

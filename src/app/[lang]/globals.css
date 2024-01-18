@@ -14,11 +14,15 @@
 
 @layer components {
 	.title {
-		@apply text-4xl text-center;
+		@apply text-4xl text-center font-thin;
 	}
 
 	.button {
-		@apply border hover:shadow-md transition-[box-shadow] border-stone-500 rounded-full text-stone-700 shadow text-lg py-[0.5em] px-[1.5em];
+		@apply border hover:shadow-md transition-[box-shadow] font-light border-stone-500 rounded-full text-stone-700 shadow text-lg py-[0.2em] px-[1.5em];
+	}
+
+	.portable-text p {
+		@apply font-extralight;
 	}
 }
 

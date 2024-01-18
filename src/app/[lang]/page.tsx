@@ -7,10 +7,8 @@ export default async function Home({ params }: { params: { lang: string } }) {
 	return (
 		<div className="pt-pageTopPadding">
 			<section className="gap-y-7 flex flex-col items-center">
-				<h1 className="text-5xl text-center">We realize your Dream House</h1>
-				<button className="border hover:shadow-md transition-all border-stone-500 rounded-full text-stone-700 shadow text-lg px-5 py-1">
-					Get Started
-				</button>
+				<h1 className="text-5xl title">We realize your Dream House</h1>
+				<button className="button">Get Started</button>
 			</section>
 
 			<ImageDisplayer />
