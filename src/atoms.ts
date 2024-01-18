@@ -7,3 +7,8 @@ export const imageStateAtom = atom<ImageState>({
 		images: ['hidden', 'hidden', 'hidden', 'hidden', 'hidden', 'hidden']
 	}
 })
+
+export const transitioningAtom = atom({
+	key: 'transitioningAtom',
+	default: false
+})

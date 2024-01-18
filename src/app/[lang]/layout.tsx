@@ -1,5 +1,6 @@
 import Header from '@/components/Header'
 import Main from '@/components/Main'
+import Wrapper from '@/components/Wrapper'
 import type { Metadata } from 'next'
 import { Raleway, Source_Serif_4 } from 'next/font/google'
 import './globals.css'
@@ -29,10 +30,10 @@ export default function RootLayout({
 	return (
 		<html lang={params.lang}>
 			<body className={raleway.className}>
-				<Main>
+				<Wrapper>
 					<Header lang={params.lang} />
-					<main className="my-headerHeight mx-auto max-w-screen-lg">{children}</main>
-				</Main>
+					<Main>{children}</Main>
+				</Wrapper>
 			</body>
 		</html>
 	)
