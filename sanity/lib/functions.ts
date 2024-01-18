@@ -22,3 +22,23 @@ export async function getProjectByUrlName(urlName: string, lang: string) {
 
 	return doc
 }
+
+export async function getFAQs(lang: string) {
+	const docs = await sanityClient.fetch(`*[_type == "faq"] {
+		"question": question[_key == "${lang}"][0].value,
+		"answer": answer[_key == "${lang}"][0].value
+	}`)
+
+	return docs
+}
+
+export async function getGeneral(lang: string) {
+	const doc = (
+		await sanityClient.fetch(`*[_type == "general"] {
+		...,
+		"aboutUsText":aboutUsText[_key == "${lang}"][0].value
+	}`)
+	)[0]
+
+	return doc
+}
