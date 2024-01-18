@@ -4,7 +4,7 @@ import { transitioningAtom } from '@/atoms'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, type ReactNode } from 'react'
 import { useSetRecoilState } from 'recoil'
-import appConfig from '../../appConfig'
+import { defaultLang, pageTransitionDuration } from '../../appConfig'
 
 interface Props {
 	href: string
@@ -12,8 +12,6 @@ interface Props {
 	children: ReactNode
 	[key: string]: any
 }
-
-const { defaultLang } = appConfig
 
 export default function CustomLink({ href, lang, children, ...args }: Props) {
 	const customHref = lang === defaultLang ? href : `/${lang}${href}`
@@ -26,7 +24,7 @@ export default function CustomLink({ href, lang, children, ...args }: Props) {
 		setTransitioning(true)
 		setTimeout(() => {
 			router.push(customHref)
-		}, appConfig.pageTransitionDuration)
+		}, pageTransitionDuration)
 	}
 
 	useEffect(() => setTransitioning(false), [pathname, setTransitioning])

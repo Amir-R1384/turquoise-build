@@ -4,9 +4,7 @@
 import { imageStateAtom } from '@/atoms'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
-import config from '../../appConfig'
-
-const { imageDisplayerBackgroundImagesNum: bgImageNum } = config
+import { imageDisplayerBackgroundImagesNum as bgImageNum } from '../../appConfig'
 
 //! array length depends on bgImageNum
 const defaultPositions = {

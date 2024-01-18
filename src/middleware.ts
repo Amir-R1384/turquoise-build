@@ -1,9 +1,7 @@
 import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
 import { NextResponse, type NextRequest } from 'next/server'
-import appConfig from '../appConfig'
-
-const { langs, defaultLang } = appConfig
+import { defaultLang, langs } from '../appConfig'
 
 export function middleware(request: NextRequest) {
 	// Check if there is any supported lang in the pathname
