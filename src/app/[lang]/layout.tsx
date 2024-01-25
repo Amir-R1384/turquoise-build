@@ -29,7 +29,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang={params.lang}>
-			<body className={raleway.className}>
+			<body className={raleway.className + ' overflow-x-clip'}>
 				<Wrapper>
 					<Header lang={params.lang} />
 					<Main>{children}</Main>

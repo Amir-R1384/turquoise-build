@@ -11,27 +11,27 @@ let moving = false
 let interval: any
 
 export default function ImageDisplayer() {
-	const [imageArray, setImageArray] = useState([0, 1, 2, 3, 4])
+	const [imageArray, setImageArray] = useState([0, 1, 2, 3, 4, 5])
 	const [translate, setTranslate] = useState(0)
 	const [paused, setPaused] = useState(false)
 
 	function moveForward() {
 		moving = true
-		setTranslate(1)
+		setTranslate(-1)
 		setTimeout(() => {
-			addToBeginning(setImageArray)
+			addToEnd(setImageArray)
 			setTranslate(0)
-			moving = false
+			// moving = false
 		}, TRANSITION_DURATION + DELAY)
 	}
 
 	function moveBackward() {
 		moving = true
-		setTranslate(-1)
+		setTranslate(1)
 		setTimeout(() => {
-			addToEnd(setImageArray)
+			addToBeginning(setImageArray)
 			setTranslate(0)
-			moving = false
+			// moving = false
 		}, TRANSITION_DURATION + DELAY)
 	}
 
@@ -44,20 +44,24 @@ export default function ImageDisplayer() {
 		}
 	}, [paused])
 
+	useEffect(() => {
+		moving = false
+	}, [imageArray])
+
 	return (
-		<section className="h-[min(80vw,400px)] mt-10 relative w-full overflow-x-clip">
+		<section className="h-[min(80vw,400px)] mt-10 relative w-full">
 			{imageArray.map((el, i) => (
 				<Link
 					href="/#"
 					key={el}
 					style={{
 						transform: `translate(calc(-50% + ${
-							(i - 2 + translate) * 420
+							(i - 3 + translate) * 420
 						}px), calc(-50%))`,
 						opacity:
-							i - 2 + translate === 0
+							i - 3 + translate === 0
 								? 1
-								: Math.abs(i - 2 + translate) === 1
+								: Math.abs(i - 3 + translate) === 1
 								? 0.1
 								: 0,
 						transitionDuration: `${TRANSITION_DURATION}ms`,
@@ -76,7 +80,13 @@ export default function ImageDisplayer() {
 					/>
 				</button>
 				<div className="flex gap-x-main">
-					<button onClick={() => !moving && moveForward()}>
+					<button
+						onClick={() => {
+							if (!moving) {
+								setPaused(true)
+								moveBackward()
+							}
+						}}>
 						<Image
 							alt="Previous image"
 							src="/assets/icons/left.svg"
@@ -84,7 +94,13 @@ export default function ImageDisplayer() {
 							height={40}
 						/>
 					</button>
-					<button onClick={() => !moving && moveBackward()}>
+					<button
+						onClick={() => {
+							if (!moving) {
+								setPaused(true)
+								moveForward()
+							}
+						}}>
 						<Image
 							alt="Next image"
 							src="/assets/icons/right.svg"
