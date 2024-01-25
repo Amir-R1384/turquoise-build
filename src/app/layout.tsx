@@ -1,11 +1,11 @@
 export const metadata = {
-	title: 'Turquoise Build'
+	title: 'Construction Turquoise'
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en">
-			<body>Under construction</body>
+			<body>{children}</body>
 		</html>
 	)
 }
