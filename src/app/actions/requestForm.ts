@@ -1,7 +1,7 @@
 'use server'
 
 import * as EmailValidator from 'email-validator'
-import { doesRequestExist } from '../../../sanity/lib/functions'
+import { doesCustomerExist } from '../../../sanity/lib/functions'
 
 type Errors = { name: false | string; email: false | string }
 
@@ -28,9 +28,9 @@ export default async function CreateRequest(data: RequestFormType) {
 		}
 
 		// Checking if the user has already submitted a request
-		if (await doesRequestExist(email)) {
+		if (await doesCustomerExist(email)) {
 			return {
-				type: 'duplicateRequest'
+				type: 'duplicateCustomer'
 			}
 		}
 
@@ -49,7 +49,7 @@ export default async function CreateRequest(data: RequestFormType) {
 					mutations: [
 						{
 							create: {
-								_type: 'request',
+								_type: 'customer',
 								name,
 								email,
 								description,

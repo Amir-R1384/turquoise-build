@@ -12,7 +12,7 @@ import { defineField, defineType } from 'sanity'
 const generalType = defineType({
 	type: 'document',
 	name: 'general',
-	title: 'General',
+	title: 'General settings',
 	fields: [
 		defineField({
 			type: 'string',
