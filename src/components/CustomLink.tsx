@@ -21,7 +21,11 @@ export default function CustomLink({ href, lang, children, ...args }: Props) {
 
 	function onClick() {
 		if (customHref === pathname) return
-		setTransitioning(true)
+		if (
+			(!customHref.startsWith(pathname) && !customHref.includes('/get-started')) ||
+			!pathname.includes('/get-started')
+		)
+			setTransitioning(true) // If the new route is a child or going from ,  don't transition
 		setTimeout(() => {
 			router.push(customHref)
 		}, pageTransitionDuration)
