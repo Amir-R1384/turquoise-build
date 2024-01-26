@@ -1,0 +1,37 @@
+import { PortableText } from '@portabletext/react'
+import Image from 'next/image'
+import { getServices } from '../../sanity/lib/functions'
+import { urlForImage } from '../../sanity/lib/image'
+import CustomLink from './CustomLink'
+
+interface Props {
+	lang: string
+	path: 'Build' | 'Design'
+}
+
+export default async function ServiceLayout({ lang, path }: Props) {
+	const service = await getServices(lang, path)
+
+	return (
+		<div className="md-container space-y-10">
+			<div className="title font-extralight">{path}</div>
+			<div className="grid grid-cols-2 w-full gap-[min(2rem,3vw)]">
+				{service.images.map((image: any, i: number) => (
+					<Image
+						key={i}
+						alt="Show case photos"
+						src={urlForImage(image)}
+						width={500}
+						height={0}
+					/>
+				))}
+			</div>
+			<div className="portable-text">
+				<PortableText value={service.text} />
+			</div>
+			<CustomLink lang={lang} href="/get-started" className="button block mx-auto">
+				Tell us about your project
+			</CustomLink>
+		</div>
+	)
+}

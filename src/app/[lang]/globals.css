@@ -35,10 +35,6 @@
 		@apply border hover:shadow-md transition-[box-shadow] font-light border-stone-500 rounded-full text-stone-700 shadow text-lg py-[0.2em] px-[1.5em];
 	}
 
-	.portable-text p {
-		@apply font-extralight text-base md:text-xl text-justify !leading-relaxed;
-	}
-
 	.input {
 		@apply py-2 text-lg px-5 border border-stone-500 rounded-none;
 	}
@@ -66,4 +62,56 @@
 	.project-banner-content a {
 		@apply text-[4cqw] font-normal;
 	}
+}
+
+.portable-text {
+	@apply flex flex-col gap-y-0.5;
+}
+
+.portable-text p:empty {
+	@apply h-4;
+}
+
+.portable-text p {
+	@apply text-base md:text-xl text-justify !leading-relaxed;
+}
+
+.portable-text h1 {
+	@apply text-4xl my-2;
+}
+
+.portable-text h2 {
+	@apply text-3xl my-1;
+}
+
+.portable-text h3 {
+	@apply text-2xl my-1;
+}
+
+.portable-text h4 {
+	@apply text-xl my-1;
+}
+
+.portable-text h5 {
+	@apply text-lg my-1;
+}
+
+.portable-text h6 {
+	@apply text-base my-1;
+}
+
+.portable-text ul li {
+	@apply list-disc ml-main;
+}
+
+.portable-text ol li {
+	@apply list-decimal ml-main;
+}
+
+.portable-text a {
+	@apply border-b border-stone-600 text-stone-500 font-light;
+}
+
+.portable-text blockquote {
+	@apply text-xl pl-1 border-l-2 border-stone-400;
 }
