@@ -1,6 +1,5 @@
 import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
-import { cookies } from 'next/headers'
 import { NextResponse, type NextRequest } from 'next/server'
 import { defaultLang, langs } from '../appConfig'
 
@@ -19,15 +18,21 @@ export function middleware(request: NextRequest) {
 		} else {
 			const lang = getLang(request)
 
-			cookies().set('lang', lang)
-
 			request.nextUrl.pathname = `/${lang}${pathname}`
+			let response
 
 			if (lang === defaultLang) {
-				return NextResponse.rewrite(request.nextUrl)
+				response = NextResponse.rewrite(request.nextUrl)
 			} else {
-				return NextResponse.redirect(request.nextUrl)
+				response = NextResponse.redirect(request.nextUrl)
 			}
+
+			response.cookies.set({
+				name: 'lang',
+				value: lang,
+				path: '/'
+			})
+			return response
 		}
 	} else {
 		if (pathname.startsWith(`/${langCookie}`)) {
