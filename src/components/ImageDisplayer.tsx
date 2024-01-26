@@ -21,7 +21,6 @@ export default function ImageDisplayer() {
 		setTimeout(() => {
 			addToEnd(setImageArray)
 			setTranslate(0)
-			// moving = false
 		}, TRANSITION_DURATION + DELAY)
 	}
 
@@ -31,7 +30,6 @@ export default function ImageDisplayer() {
 		setTimeout(() => {
 			addToBeginning(setImageArray)
 			setTranslate(0)
-			// moving = false
 		}, TRANSITION_DURATION + DELAY)
 	}
 
@@ -39,7 +37,7 @@ export default function ImageDisplayer() {
 		if (paused) {
 			clearInterval(interval)
 		} else {
-			moveForward()
+			setTimeout(() => moveForward(), 500)
 			interval = setInterval(moveForward, TRANSITION_DURATION * 3 + DELAY)
 		}
 	}, [paused])
