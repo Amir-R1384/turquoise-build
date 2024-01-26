@@ -1,26 +1,58 @@
 import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
+import { cookies } from 'next/headers'
 import { NextResponse, type NextRequest } from 'next/server'
 import { defaultLang, langs } from '../appConfig'
 
 export function middleware(request: NextRequest) {
-	// Check if there is any supported lang in the pathname
+	const langCookie = request.cookies.get('lang')?.value
 	const { pathname } = request.nextUrl
-	const pathnameHasLang = langs.some(
-		lang => pathname.startsWith(`/${lang}/`) || pathname === `/${lang}`
-	)
 
-	if (pathnameHasLang) return
+	// If no cookie
+	if (!langs.includes(langCookie!)) {
+		const pathnameHasLang = langs.some(
+			lang => pathname.startsWith(`/${lang}/`) || pathname === `/${lang}`
+		)
 
-	// Redirect if there is no lang
-	const lang = getLang(request)
+		if (pathnameHasLang) {
+			return
+		} else {
+			const lang = getLang(request)
 
-	request.nextUrl.pathname = `/${lang}${pathname}`
+			cookies().set('lang', lang)
 
-	if (lang === defaultLang) {
-		return NextResponse.rewrite(request.nextUrl)
+			request.nextUrl.pathname = `/${lang}${pathname}`
+
+			if (lang === defaultLang) {
+				return NextResponse.rewrite(request.nextUrl)
+			} else {
+				return NextResponse.redirect(request.nextUrl)
+			}
+		}
 	} else {
-		return NextResponse.redirect(request.nextUrl)
+		if (pathname.startsWith(`/${langCookie}`)) {
+			if (langCookie === defaultLang) {
+				request.nextUrl.pathname = pathname.slice(3)
+				return NextResponse.redirect(request.nextUrl)
+			}
+			return
+		} else {
+			// Making sure there isnt already a wrong lang in the pathname
+
+			if (langs.some(lang => pathname.startsWith(`/${lang}`))) {
+				const cleanPathname = pathname.slice(3)
+				request.nextUrl.pathname = `/${langCookie}${cleanPathname}`
+				return NextResponse.redirect(request.nextUrl)
+			} else {
+				request.nextUrl.pathname = `/${langCookie}${pathname}`
+
+				if (langCookie === defaultLang) {
+					return NextResponse.rewrite(request.nextUrl)
+				} else {
+					return NextResponse.redirect(request.nextUrl)
+				}
+			}
+		}
 	}
 }
 
