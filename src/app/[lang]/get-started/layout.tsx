@@ -21,8 +21,33 @@ export default function GetStatrted({ params, children }: any) {
 		setErrors({ name: false, email: false })
 		setLoading(true)
 
+		const path = pathname.includes('/guide') ? 'guide' : 'describe'
+
+		// If the user went to the guide but changed mind and went to the describe section, remove the data from guide, and vice versa
+		const usefulRequestForm: RequestFormType =
+			path === 'guide'
+				? {
+						...requestForm,
+						description: ''
+				  }
+				: {
+						...requestForm,
+						region: '',
+						area: '',
+						options: {
+							bedroom: { num: 0 },
+							bathroom: { num: 0 },
+							kitchen: false,
+							livingRoom: false,
+							diningRoom: false,
+							garden: false
+						},
+						startDate: '',
+						endDate: ''
+				  }
+
 		try {
-			const res = await CreateRequest(requestForm)
+			const res = await CreateRequest(usefulRequestForm)
 
 			switch (res?.type) {
 				case 'success':
