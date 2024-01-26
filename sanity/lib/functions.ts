@@ -42,3 +42,9 @@ export async function getGeneral(lang: string) {
 
 	return doc
 }
+
+export async function doesRequestExist(email: string) {
+	const docs = await sanityClient.fetch(`*[_type == "request" && email == "${email}"]`)
+
+	return docs.length > 0
+}

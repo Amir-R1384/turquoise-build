@@ -10,6 +10,16 @@
 	section {
 		@apply px-main;
 	}
+
+	label {
+		@apply text-lg;
+	}
+
+	input,
+	textarea,
+	select {
+		@apply outline-stone-500;
+	}
 }
 
 @layer components {
@@ -27,6 +37,10 @@
 
 	.portable-text p {
 		@apply font-extralight text-base md:text-xl text-justify !leading-relaxed;
+	}
+
+	.input {
+		@apply py-2 text-lg px-5 border border-stone-500 rounded-none;
 	}
 }
 
