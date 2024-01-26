@@ -14,43 +14,48 @@ import { defineField, defineType } from 'sanity'
 	kitchen: boolean
 	living room: boolean
 	garden: boolean
+- Is project finished
 */
 
-const requestType = defineType({
+const customerType = defineType({
 	type: 'document',
-	name: 'request',
-	title: 'Request',
-	readOnly: true,
+	name: 'customer',
+	title: 'Customers',
 	fields: [
 		defineField({
 			type: 'string',
 			name: 'name',
 			title: 'Name',
-			validation: Rule => Rule.required()
+			validation: Rule => Rule.required(),
+			readOnly: true
 		}),
 		defineField({
 			type: 'string',
 			name: 'email',
 			title: 'Email',
-			validation: Rule => Rule.required()
+			validation: Rule => Rule.required(),
+			readOnly: true
 		}),
 		defineField({
 			type: 'text',
 			name: 'description',
 			title: 'Description',
-			hidden: ({ document }) => !document?.description
+			hidden: ({ document }) => !document?.description,
+			readOnly: true
 		}),
 		defineField({
 			type: 'string',
 			name: 'region',
 			title: 'Region',
-			hidden: ({ document }) => !document?.region
+			hidden: ({ document }) => !document?.region,
+			readOnly: true
 		}),
 		defineField({
 			type: 'string',
 			name: 'area',
 			title: 'Area',
-			hidden: ({ document }) => !document?.area
+			hidden: ({ document }) => !document?.area,
+			readOnly: true
 		}),
 		defineField({
 			type: 'date',
@@ -59,7 +64,8 @@ const requestType = defineType({
 			options: {
 				dateFormat: 'MMMM Do YYYY'
 			},
-			hidden: ({ document }) => !document?.startDate
+			hidden: ({ document }) => !document?.startDate,
+			readOnly: true
 		}),
 		defineField({
 			type: 'date',
@@ -68,12 +74,14 @@ const requestType = defineType({
 			options: {
 				dateFormat: 'MMMM Do YYYY'
 			},
-			hidden: ({ document }) => !document?.endDate
+			hidden: ({ document }) => !document?.endDate,
+			readOnly: true
 		}),
 		defineField({
 			type: 'object',
 			name: 'options',
 			title: 'Options',
+			readOnly: true,
 			fields: [
 				{
 					type: 'number',
@@ -118,8 +126,13 @@ const requestType = defineType({
 					hidden: ({ document }) => !document?.options?.garden
 				}
 			]
+		}),
+		defineField({
+			type: 'boolean',
+			name: 'projectFinished',
+			title: 'Is project finished'
 		})
 	]
 })
 
-export default requestType
+export default customerType

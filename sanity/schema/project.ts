@@ -13,7 +13,7 @@ import { defineField, defineType } from 'sanity'
 const projectType = defineType({
 	type: 'document',
 	name: 'project',
-	title: 'Project',
+	title: 'Projects',
 	fields: [
 		defineField({
 			type: 'string',

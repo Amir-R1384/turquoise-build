@@ -114,6 +114,19 @@ export default function Guide() {
 						}
 					/>
 					<CustomCheckbox
+						name="Dining Room"
+						checked={diningRoom}
+						onClick={() =>
+							setRequestForm(prev => ({
+								...prev,
+								options: {
+									...prev.options,
+									diningRoom: !prev.options.diningRoom
+								}
+							}))
+						}
+					/>
+					<CustomCheckbox
 						name="Garden"
 						checked={garden}
 						onClick={() =>

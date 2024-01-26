@@ -34,7 +34,7 @@ export default function GetStatrted({ params, children }: any) {
 					setErrors(res.errors!)
 					break
 
-				case 'duplicateRequest':
+				case 'duplicateCustomer':
 					setStatus('duplicate')
 					break
 				default:
