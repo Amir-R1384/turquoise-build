@@ -2,6 +2,9 @@ import * as EmailValidator from 'email-validator'
 import { NextRequest, NextResponse } from 'next/server'
 import { doesCustomerExist } from '../../../../sanity/lib/functions'
 
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+
 export async function POST(request: NextRequest) {
 	try {
 		const data = await request.json()
@@ -59,7 +62,28 @@ export async function POST(request: NextRequest) {
 			}
 		)
 
-		if (res.ok) return NextResponse.json({ type: 'success' }, { status: 200 })
+		if (res.ok) {
+			const msg = {
+				to: process.env.ADMIN_EMAIL,
+				from: process.env.SENDER_EMAIL,
+				subject: 'NEW CUSTOMER',
+				html: `<html>
+						<body>
+							<h1>NEW CUSTOMER</h1>
+
+							<h2>Info</h2>
+							<ul>
+								<li>Name: ${name}</li>
+								<li>Email: ${email}</li>
+							</ul>
+						</body>
+					</html>`
+			}
+
+			await sgMail.send(msg)
+
+			return NextResponse.json({ type: 'success' }, { status: 200 })
+		}
 	} catch (err) {
 		return { type: 'unhandledError' }
 	}
