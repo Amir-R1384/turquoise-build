@@ -44,7 +44,7 @@ export default function Header({ lang }: { lang: string }) {
 			<nav onMouseLeave={() => setServiceMenuOpen(false)}>
 				<ul
 					ref={navRef}
-					style={{ height: window.innerHeight - headerHeight.pixels }}
+					style={{ height: innerHeight - headerHeight.pixels }}
 					className={` ${
 						menuOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'
 					} fixed flex flex-col gap-3 left-0 z-10 headerBlur top-headerHeight px-main pb-main lg:scale-y-100 lg:opacity-100 origin-top transition-all duration-500`}>
@@ -112,6 +112,17 @@ export default function Header({ lang }: { lang: string }) {
 							<CustomLink
 								lang={lang}
 								className={linkStyles}
+								href="/testimonials"
+								style={{
+									fontWeight: pathname.startsWith('/contact') ? 'light' : 200
+								}}>
+								Testimonials
+							</CustomLink>
+						</li>
+						<li>
+							<CustomLink
+								lang={lang}
+								className={linkStyles}
 								href="/contact"
 								style={{
 									fontWeight: pathname.startsWith('/contact') ? 'light' : 200
@@ -139,12 +150,10 @@ export default function Header({ lang }: { lang: string }) {
 								/>
 							</a>
 						</div>
-						<div className="cursor-pointer border rounded-lg py-0.5 pl-2 pr-0 border-stone-500">
+						<div className="cursor-pointer border py-0.5 pl-2 pr-0 border-stone-500">
 							<select
 								value={lang}
 								onChange={e => {
-									console.log(e.target.value)
-
 									document.cookie = `lang=${e.target.value}; path=/`
 									window.location.reload()
 								}}

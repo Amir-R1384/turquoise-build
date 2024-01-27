@@ -1,15 +1,14 @@
-'use server'
-
 import * as EmailValidator from 'email-validator'
-import { doesCustomerExist } from '../../../sanity/lib/functions'
+import { NextRequest, NextResponse } from 'next/server'
+import { doesCustomerExist } from '../../../../sanity/lib/functions'
 
-type Errors = { name: false | string; email: false | string }
-
-export default async function CreateRequest(data: RequestFormType) {
+export async function POST(request: NextRequest) {
 	try {
+		const data = await request.json()
+
 		// Name and Email validation
 		const { name, email } = data
-		const errors: Errors = { name: false, email: false }
+		const errors: any = { name: false, email: false }
 
 		if (name.trim() === '') {
 			errors.name = 'A full name must be provided.'
@@ -21,21 +20,23 @@ export default async function CreateRequest(data: RequestFormType) {
 		}
 
 		if (errors.name || errors.email) {
-			return {
-				type: 'fieldError',
-				errors
-			}
+			return NextResponse.json({ type: 'fieldError', errors }, { status: 400 })
 		}
 
 		// Checking if the user has already submitted a request
 		if (await doesCustomerExist(email)) {
-			return {
-				type: 'duplicateCustomer'
-			}
+			return NextResponse.json({ type: 'duplicateCustomer' }, { status: 400 })
 		}
 
-		const { description, region, area, startDate, endDate } = data
-		const { bedroom, bathroom, kitchen, livingRoom, diningRoom, garden } = data.options
+		// Simply not adding empty fields in the db to stop validation (for dates specially)
+		const customer = { ...data }
+		if (!customer.startDate) delete customer.startDate
+		if (!customer.endDate) delete customer.endDate
+
+		if (data.options.bedroom.num) customer.options.bedroom = data.options.bedroom.num
+		else delete customer.options.bedroom
+		if (data.options.bathroom.num) customer.options.bathroom = data.options.bathroom.num
+		else delete customer.options.bathroom
 
 		const res = await fetch(
 			`https://${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}.api.sanity.io/v${process.env.NEXT_PUBLIC_SANITY_API_VERSION}/data/mutate/production`,
@@ -50,21 +51,7 @@ export default async function CreateRequest(data: RequestFormType) {
 						{
 							create: {
 								_type: 'customer',
-								name,
-								email,
-								description,
-								region,
-								area,
-								startDate,
-								endDate,
-								options: {
-									bedroom: bedroom.num,
-									bathroom: bathroom.num,
-									kitchen,
-									livingRoom,
-									diningRoom,
-									garden
-								}
+								...customer
 							}
 						}
 					]
@@ -72,7 +59,7 @@ export default async function CreateRequest(data: RequestFormType) {
 			}
 		)
 
-		if (res.status === 200) return { type: 'success' }
+		if (res.ok) return NextResponse.json({ type: 'success' }, { status: 200 })
 	} catch (err) {
 		return { type: 'unhandledError' }
 	}

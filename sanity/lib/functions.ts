@@ -49,6 +49,12 @@ export async function doesCustomerExist(email: string) {
 	return docs.length > 0
 }
 
+export async function getCustomerByEmail(email: string) {
+	const doc = (await sanityClient.fetch(`*[_type == "customer" && email == "${email}"]`))[0]
+
+	return doc
+}
+
 export async function getServices(lang: string, path: string) {
 	const doc = (
 		await sanityClient.fetch(`*[_type == "service" && name == "${path}"] {
@@ -58,4 +64,9 @@ export async function getServices(lang: string, path: string) {
 	)[0]
 
 	return doc
+}
+
+export async function getTestimonials() {
+	const docs = await sanityClient.fetch(`*[_type == "testimonial"]`)
+	return docs
 }
