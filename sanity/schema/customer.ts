@@ -26,36 +26,31 @@ const customerType = defineType({
 			type: 'string',
 			name: 'name',
 			title: 'Name',
-			validation: Rule => Rule.required(),
-			readOnly: true
+			validation: Rule => Rule.required()
 		}),
 		defineField({
 			type: 'string',
 			name: 'email',
 			title: 'Email',
-			validation: Rule => Rule.required(),
-			readOnly: true
+			validation: Rule => Rule.required()
 		}),
 		defineField({
 			type: 'text',
 			name: 'description',
 			title: 'Description',
-			hidden: ({ document }) => !document?.description,
-			readOnly: true
+			hidden: ({ document }) => !document?.description
 		}),
 		defineField({
 			type: 'string',
 			name: 'region',
 			title: 'Region',
-			hidden: ({ document }) => !document?.region,
-			readOnly: true
+			hidden: ({ document }) => !document?.region
 		}),
 		defineField({
 			type: 'string',
 			name: 'area',
 			title: 'Area',
-			hidden: ({ document }) => !document?.area,
-			readOnly: true
+			hidden: ({ document }) => !document?.area
 		}),
 		defineField({
 			type: 'date',
@@ -64,8 +59,7 @@ const customerType = defineType({
 			options: {
 				dateFormat: 'MMMM Do YYYY'
 			},
-			hidden: ({ document }) => !document?.startDate,
-			readOnly: true
+			hidden: ({ document }) => !document?.startDate
 		}),
 		defineField({
 			type: 'date',
@@ -74,14 +68,12 @@ const customerType = defineType({
 			options: {
 				dateFormat: 'MMMM Do YYYY'
 			},
-			hidden: ({ document }) => !document?.endDate,
-			readOnly: true
+			hidden: ({ document }) => !document?.endDate
 		}),
 		defineField({
 			type: 'object',
 			name: 'options',
 			title: 'Options',
-			readOnly: true,
 			fields: [
 				{
 					type: 'number',

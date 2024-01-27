@@ -27,3 +27,10 @@ type RequestFormType = {
 	startDate: string
 	endDate: string
 }
+
+type TestimonialInput = {
+	name: string
+	email: string
+	rating: number
+	message: string
+}

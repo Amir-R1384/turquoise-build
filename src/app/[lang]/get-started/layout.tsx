@@ -1,6 +1,5 @@
 'use client'
 
-import CreateRequest from '@/app/actions/requestForm'
 import { requestFormAtom } from '@/atoms'
 import CustomLink from '@/components/CustomLink'
 import { usePathname } from 'next/navigation'
@@ -47,24 +46,32 @@ export default function GetStatrted({ params, children }: any) {
 				  }
 
 		try {
-			const res = await CreateRequest(usefulRequestForm)
+			const res = await fetch('/api/request', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(usefulRequestForm)
+			})
 
-			switch (res?.type) {
+			const json = await res.json()
+
+			switch (json?.type) {
 				case 'success':
 					setStatus('success')
 					break
 
 				case 'fieldError':
 					window.scrollTo({ top: 0 })
-					setErrors(res.errors!)
+					setErrors(json.errors!)
 					break
 
 				case 'duplicateCustomer':
 					setStatus('duplicate')
 					break
+
 				default:
 					alert('Something went wrong. Please try again later')
-
 					break
 			}
 		} catch (err: any) {
@@ -153,7 +160,7 @@ export default function GetStatrted({ params, children }: any) {
 							{status === 'success'
 								? 'Your request was submitted.'
 								: status === 'duplicate'
-								? 'You have already submitted a request with this email. Please wait and our team will contact you'
+								? 'You have already submitted a request. Please wait and our team will contact you'
 								: 'We will contact you shortly to discuss your project.'}
 						</p>
 					</div>
