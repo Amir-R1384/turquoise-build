@@ -1,4 +1,7 @@
+'use server'
+
 import * as EmailValidator from 'email-validator'
+import { unstable_noStore } from 'next/cache'
 import { NextRequest, NextResponse } from 'next/server'
 import { doesCustomerExist } from '../../../../sanity/lib/functions'
 
@@ -6,6 +9,8 @@ const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 export async function POST(request: NextRequest) {
+	unstable_noStore()
+
 	try {
 		const data = await request.json()
 
@@ -85,6 +90,6 @@ export async function POST(request: NextRequest) {
 			return NextResponse.json({ type: 'success' }, { status: 200 })
 		}
 	} catch (err) {
-		return { type: 'unhandledError' }
+		return NextResponse.json({ type: 'unhandledError' }, { status: 500 })
 	}
 }

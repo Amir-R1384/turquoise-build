@@ -6,5 +6,5 @@ const dictionaries = {
 }
 
 export default async function getTranslation(lang: string) {
-	return dictionaries[lang as 'fr' | 'en']
+	return dictionaries[lang as Lang]
 }

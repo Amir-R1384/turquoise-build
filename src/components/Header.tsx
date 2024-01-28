@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-import { defaultLang, headerHeight } from '../../appConfig'
+import { defaultLang } from '../../appConfig'
 import CustomLink from './CustomLink'
 
 export default function Header({ lang }: { lang: string }) {
@@ -44,10 +44,9 @@ export default function Header({ lang }: { lang: string }) {
 			<nav onMouseLeave={() => setServiceMenuOpen(false)}>
 				<ul
 					ref={navRef}
-					style={{ height: innerHeight - headerHeight.pixels }}
 					className={` ${
 						menuOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'
-					} fixed flex flex-col gap-3 left-0 z-10 headerBlur top-headerHeight px-main pb-main lg:scale-y-100 lg:opacity-100 origin-top transition-all duration-500`}>
+					} fixed flex h-[calc(100vh-theme(spacing.headerHeight))] flex-col gap-3 left-0 z-10 headerBlur top-headerHeight px-main pb-main lg:scale-y-100 lg:opacity-100 origin-top transition-all duration-500`}>
 					<div className="flex-1 flex flex-col gap-3">
 						<li>
 							<CustomLink
