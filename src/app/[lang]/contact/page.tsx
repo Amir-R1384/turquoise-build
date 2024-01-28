@@ -1,7 +1,10 @@
+import getTranslation from '@/translations'
 import Image from 'next/image'
 import { getGeneral } from '../../../../sanity/lib/functions'
 
 export default async function Contact({ params }: PageProps) {
+	const dict = getTranslation(params.lang)
+
 	const general = await getGeneral(params.lang)
 
 	const { email, tel } = general
@@ -10,15 +13,15 @@ export default async function Contact({ params }: PageProps) {
 
 	return (
 		<div className="md-container">
-			<div className="title text-left font-extralight mb-10">Contact Us</div>
+			<div className="title text-left font-extralight mb-10">{dict.titles.contact}</div>
 
 			<div className="flex flex-col gap-y-5 text-lg md:text-xl">
 				<a href={`mailto:${email}`} className="pl-2 border-l border-stone-500">
-					<span>Email us at </span>
+					<span>{dict.pages.contact.emailUs}</span>
 					<span className="font-light">{email}</span>
 				</a>
 				<a href="tel:+5147035145" className="pl-2 border-l border-stone-500">
-					<span>Telephone: </span>
+					<span>{dict.pages.contact.phone}</span>
 					<span className="font-light">{formattedTel}</span>
 				</a>
 				<div className="flex gap-5 items-center mt-5">

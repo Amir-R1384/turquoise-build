@@ -1,9 +1,12 @@
 'use client'
 
 import Stars from '@/components/Stars'
+import getTranslation from '@/translations'
 import { useState } from 'react'
 
 export default function CreateTestimonial({ params }: PageProps) {
+	const dict = getTranslation(params.lang)
+
 	const [status, setStatus] = useState<'success' | 'projectNotFinished' | 'duplicate' | null>(
 		null
 	)
@@ -53,14 +56,14 @@ export default function CreateTestimonial({ params }: PageProps) {
 				break
 
 			default:
-				alert('Something went wrong. Please try again later')
+				alert(dict.messages.error)
 				break
 		}
 	}
 
 	return (
 		<div className="md-container">
-			<div className="title mb-10">Write your opinion about us</div>
+			<div className="title mb-10">{dict.titles.newTestimonial}</div>
 			<div className="space-y-5">
 				<div className="flex flex-col gap-y-2">
 					<label htmlFor="name">Name</label>
@@ -75,7 +78,7 @@ export default function CreateTestimonial({ params }: PageProps) {
 					<div className="text-red-600 -mt-1">{errors.name ? errors.name : ''}</div>
 				</div>
 				<div className="flex flex-col gap-y-2">
-					<label htmlFor="email">Email used when submitting request</label>
+					<label htmlFor="email">{dict.labels.sameEmail}</label>
 					<input
 						id="email"
 						type="text"
@@ -87,7 +90,7 @@ export default function CreateTestimonial({ params }: PageProps) {
 					<div className="text-red-600 -mt-1">{errors.email ? errors.email : ''}</div>
 				</div>
 				<div className="flex flex-col gap-y-2">
-					<label>Rating</label>
+					<label>{dict.labels.rating}</label>
 					<Stars
 						rating={inputs.rating}
 						onClick={el => setInputs(prev => ({ ...prev, rating: el }))}
@@ -95,7 +98,7 @@ export default function CreateTestimonial({ params }: PageProps) {
 					<div className="text-red-600 -mt-1">{errors.rating ? errors.rating : ''}</div>
 				</div>
 				<div className="flex flex-col gap-y-2">
-					<label htmlFor="message">Message</label>
+					<label htmlFor="message">{dict.labels.message}</label>
 					<textarea
 						value={inputs.message}
 						onChange={e => setInputs(prev => ({ ...prev, message: e.target.value }))}
@@ -106,7 +109,7 @@ export default function CreateTestimonial({ params }: PageProps) {
 					<div className="text-red-600 -mt-1">{errors.message ? errors.message : ''}</div>
 				</div>
 				<button onClick={onSubmit} className="button">
-					Submit
+					{dict.buttons.submit}
 				</button>
 				<p
 					className={`${
@@ -117,11 +120,11 @@ export default function CreateTestimonial({ params }: PageProps) {
 							: ''
 					} text-center`}>
 					{status === 'success'
-						? 'Thank you for your feedback'
+						? dict.messages.testimonialSuccess
 						: status === 'projectNotFinished'
-						? "Your project is not finished yet, you can write a review once it's finished."
+						? dict.messages.projectnotFinished
 						: status === 'duplicate'
-						? 'You have already submitted a testimonial.'
+						? dict.messages.duplicateTestimonial
 						: ''}
 				</p>
 			</div>

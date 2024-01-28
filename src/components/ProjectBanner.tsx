@@ -1,3 +1,4 @@
+import getTranslation from '@/translations'
 import { expressAsYearAndMonth } from '@/util/date'
 import { urlForImage } from '../../sanity/lib/image'
 import CustomLink from './CustomLink'
@@ -8,6 +9,8 @@ interface Props {
 }
 
 export default function ProjectBanner({ projectInfo, lang }: Props) {
+	const dict = getTranslation(lang)
+
 	const { name, urlName, starterImages, startDate, endDate } = projectInfo
 
 	const date = `${expressAsYearAndMonth(startDate, lang)} - ${expressAsYearAndMonth(
@@ -24,7 +27,7 @@ export default function ProjectBanner({ projectInfo, lang }: Props) {
 					lang={lang}
 					href={`/projects/${urlName}`}
 					className="button bg-white bg-opacity-70 inline-block text-[5cqw] py-[0.2em] px-[1.5em]">
-					More about this project
+					{dict.components.projectBanner.more}
 				</CustomLink>
 			</div>
 			<div

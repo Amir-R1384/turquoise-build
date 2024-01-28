@@ -2,9 +2,11 @@
 
 import { requestFormAtom } from '@/atoms'
 import CustomCheckbox from '@/components/CustomCheckbox'
+import getTranslation from '@/translations'
 import { useRecoilState } from 'recoil'
 
-export default function Guide() {
+export default function Guide({ params }: PageProps) {
+	const dict = getTranslation(params.lang)
 	const [requestForm, setRequestForm] = useRecoilState(requestFormAtom)
 
 	const { region, area, startDate, endDate } = requestForm
@@ -13,7 +15,7 @@ export default function Guide() {
 	return (
 		<>
 			<div className="flex flex-col gap-y-2 mb-10">
-				<label htmlFor="region">Region</label>
+				<label htmlFor="region">{dict.labels.region}</label>
 				<input
 					id="region"
 					type="text"
@@ -25,7 +27,7 @@ export default function Guide() {
 				/>
 			</div>
 			<div className="flex flex-col gap-y-2 mb-10">
-				<label htmlFor="area">Area estimation</label>
+				<label htmlFor="area">{dict.labels.area}</label>
 				<input
 					id="area"
 					type="text"
@@ -37,10 +39,10 @@ export default function Guide() {
 				/>
 			</div>
 			<div className="flex flex-col gap-y-2 mb-10">
-				<div className="text-lg mb-1">Rooms to renovate</div>
+				<div className="text-lg mb-1">{dict.labels.rooms}</div>
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-main">
 					<CustomCheckbox
-						name="Bedroom"
+						name={dict.labels.bedroom}
 						checked={bedroom.num > 0}
 						withSelect={true}
 						selectValue={bedroom.num.toString()}
@@ -64,7 +66,7 @@ export default function Guide() {
 						}}
 					/>
 					<CustomCheckbox
-						name="Bathroom"
+						name={dict.labels.bathroom}
 						checked={bathroom.num > 0}
 						withSelect={true}
 						selectValue={bathroom.num.toString()}
@@ -88,7 +90,7 @@ export default function Guide() {
 						}}
 					/>
 					<CustomCheckbox
-						name="Kitchen"
+						name={dict.labels.kitchen}
 						checked={kitchen}
 						onClick={() =>
 							setRequestForm(prev => ({
@@ -101,7 +103,7 @@ export default function Guide() {
 						}
 					/>
 					<CustomCheckbox
-						name="Living Room"
+						name={dict.labels.livingRoom}
 						checked={livingRoom}
 						onClick={() =>
 							setRequestForm(prev => ({
@@ -114,7 +116,7 @@ export default function Guide() {
 						}
 					/>
 					<CustomCheckbox
-						name="Dining Room"
+						name={dict.labels.diningRoom}
 						checked={diningRoom}
 						onClick={() =>
 							setRequestForm(prev => ({
@@ -127,7 +129,7 @@ export default function Guide() {
 						}
 					/>
 					<CustomCheckbox
-						name="Garden"
+						name={dict.labels.garden}
 						checked={garden}
 						onClick={() =>
 							setRequestForm(prev => ({
@@ -143,7 +145,7 @@ export default function Guide() {
 			</div>
 			<div className="grid grid-cols-1 sm:grid-cols-2 gap-main">
 				<div className="flex flex-col gap-y-2 mb-10">
-					<label htmlFor="startDate">Start at</label>
+					<label htmlFor="startDate">{dict.labels.startAt}</label>
 					<input
 						type="date"
 						id="startDate"
@@ -154,7 +156,7 @@ export default function Guide() {
 					/>
 				</div>
 				<div className="flex flex-col gap-y-2 mb-10">
-					<label htmlFor="endDate">End by</label>
+					<label htmlFor="endDate">{dict.labels.endBy}</label>
 					<input
 						type="date"
 						id="endDate"

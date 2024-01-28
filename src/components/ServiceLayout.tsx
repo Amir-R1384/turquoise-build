@@ -1,3 +1,4 @@
+import getTranslation from '@/translations'
 import { PortableText } from '@portabletext/react'
 import Image from 'next/image'
 import { getServices } from '../../sanity/lib/functions'
@@ -10,11 +11,14 @@ interface Props {
 }
 
 export default async function ServiceLayout({ lang, path }: Props) {
+	const dict = getTranslation(lang)
+
 	const service = await getServices(lang, path)
 
 	return (
 		<div className="md-container space-y-10">
-			<div className="title font-extralight">{path}</div>
+			{/* @ts-ignore */}
+			<div className="title font-extralight">{dict.titles[path.toLowerCase()]}</div>
 			<div className="grid grid-cols-2 w-full gap-[min(2rem,3vw)]">
 				{service.images.map((image: any, i: number) => (
 					<Image
@@ -30,7 +34,7 @@ export default async function ServiceLayout({ lang, path }: Props) {
 				<PortableText value={service.text} />
 			</div>
 			<CustomLink lang={lang} href="/get-started" className="button block mx-auto">
-				Tell us about your project
+				{dict.buttons.getStarted}
 			</CustomLink>
 		</div>
 	)
