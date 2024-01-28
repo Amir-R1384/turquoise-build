@@ -2,6 +2,7 @@
 
 import { requestFormAtom } from '@/atoms'
 import CustomLink from '@/components/CustomLink'
+import getTranslation from '@/translations'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { useRecoilState } from 'recoil'
@@ -9,6 +10,8 @@ import { useRecoilState } from 'recoil'
 type Errors = { name: false | string; email: false | string }
 
 export default function GetStatrted({ params, children }: any) {
+	const dict = getTranslation(params.lang)
+
 	const [requestForm, setRequestForm] = useRecoilState(requestFormAtom)
 	const [errors, setErrors] = useState<Errors>({ name: false, email: false }) // Only name and email are required so only those can be mistaken
 	const [loading, setLoading] = useState(false)
@@ -71,11 +74,11 @@ export default function GetStatrted({ params, children }: any) {
 					break
 
 				default:
-					alert('Something went wrong. Please try again later')
+					alert(dict.messages.error)
 					break
 			}
 		} catch (err: any) {
-			alert('Something went wrong. Please try again later')
+			alert(dict.messages.error)
 		} finally {
 			setLoading(false)
 		}
@@ -83,12 +86,12 @@ export default function GetStatrted({ params, children }: any) {
 
 	return (
 		<div className="md-container">
-			<div className="title text-center font-extralight mb-10">Get Started</div>
+			<div className="title text-center font-extralight mb-10">{dict.titles.getStarted}</div>
 			<div className="space-y-10">
 				<div className="space-y-5">
-					<div className="text-2xl mb-5">Contact information (Required)</div>
+					<div className="text-2xl mb-5">{dict.labels.contactInformation}</div>
 					<div className="flex flex-col gap-y-2">
-						<label htmlFor="name">Name</label>
+						<label htmlFor="name">{dict.labels.name}</label>
 						<input
 							id="name"
 							type="text"
@@ -102,7 +105,7 @@ export default function GetStatrted({ params, children }: any) {
 						<div className="text-red-600 -mt-1">{errors.name ? errors.name : ''}</div>
 					</div>
 					<div className="flex flex-col gap-y-2">
-						<label htmlFor="email">Email</label>
+						<label htmlFor="email">{dict.labels.email}</label>
 						<input
 							id="email"
 							type="text"
@@ -117,7 +120,7 @@ export default function GetStatrted({ params, children }: any) {
 					</div>
 				</div>
 				<div className="space-y-5">
-					<div className="text-2xl mb-5">Project description (Optional)</div>
+					<div className="text-2xl mb-5">{dict.labels.projectDescription}</div>
 					<div className="flex flex-col md:flex-row w-full justify-center items-center gap-x-5 gap-y-2">
 						<CustomLink
 							lang={params.lang}
@@ -126,9 +129,9 @@ export default function GetStatrted({ params, children }: any) {
 								pathname.endsWith('guide') &&
 								'text-white bg-stone-500 transition-all'
 							}`}>
-							Use our guide
+							{dict.labels.guide}
 						</CustomLink>
-						<div className="text-lg">Or</div>
+						<div className="text-lg">{dict.others.or}</div>
 						<CustomLink
 							lang={params.lang}
 							href="/get-started/describe"
@@ -136,7 +139,7 @@ export default function GetStatrted({ params, children }: any) {
 								pathname.endsWith('describe') &&
 								'text-white bg-stone-500 transition-all'
 							}`}>
-							Provide your own description
+							{dict.labels.describe}
 						</CustomLink>
 					</div>
 					<div>{children}</div>
@@ -147,7 +150,7 @@ export default function GetStatrted({ params, children }: any) {
 							aria-disabled={loading}
 							onClick={onSubmit}
 							className={`${loading && 'opacity-50'} button mx-auto block mb-2`}>
-							Submit request
+							{dict.buttons.submit}
 						</button>
 						<p
 							className={`${
@@ -158,10 +161,10 @@ export default function GetStatrted({ params, children }: any) {
 									: ''
 							} text-center`}>
 							{status === 'success'
-								? 'Your request was submitted.'
+								? dict.messages.requestSuccess
 								: status === 'duplicate'
-								? 'You have already submitted a request. Please wait and our team will contact you'
-								: 'We will contact you shortly to discuss your project.'}
+								? dict.messages.duplicateRequest
+								: dict.messages.weWillContact}
 						</p>
 					</div>
 				)}

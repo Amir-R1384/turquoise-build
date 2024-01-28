@@ -1,13 +1,16 @@
 import CustomLink from '@/components/CustomLink'
 import Stars from '@/components/Stars'
+import getTranslation from '@/translations'
 import { getTestimonials } from '../../../../sanity/lib/functions'
 
 export default async function Testimonials({ params }: PageProps) {
+	const dict = getTranslation(params.lang)
+
 	const testimonials = await getTestimonials()
 
 	return (
 		<div className="md-container px-main">
-			<h1 className="title mb-10">What past clients say</h1>
+			<h1 className="title mb-10">{dict.titles.testimonial}</h1>
 			<div className="flex flex-col gap-y-5 w-full mx-auto">
 				{testimonials.map((testimonial: any, i: number) => (
 					<div key={i} className="border @container border-stone-500 p-5 space-y-3">
@@ -33,7 +36,7 @@ export default async function Testimonials({ params }: PageProps) {
 				lang={params.lang}
 				href="/testimonials/new"
 				className="underline mx-auto mt-10 text-lg">
-				Worked with us? Write your opinion
+				{dict.buttons.addTestimonial}
 			</CustomLink>
 		</div>
 	)

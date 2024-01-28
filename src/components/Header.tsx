@@ -1,5 +1,6 @@
 'use client'
 
+import getTranslation from '@/translations'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
@@ -7,6 +8,8 @@ import { defaultLang } from '../../appConfig'
 import CustomLink from './CustomLink'
 
 export default function Header({ lang }: { lang: string }) {
+	const dict = getTranslation(lang)
+
 	const [menuOpen, setMenuOpen] = useState(false)
 	const pathname = usePathname().match(lang !== defaultLang ? `(?<=${lang}).*` : `.*`)![0]
 	const [serviceMenuOpen, setServiceMenuOpen] = useState(false)
@@ -56,7 +59,7 @@ export default function Header({ lang }: { lang: string }) {
 								style={{
 									fontWeight: pathname.startsWith('/projects') ? 300 : 200
 								}}>
-								Projects
+								{dict.titles.projects}
 							</CustomLink>
 						</li>
 						<div
@@ -80,7 +83,7 @@ export default function Header({ lang }: { lang: string }) {
 										lang={lang}
 										href="/services/build"
 										className={linkStyles + ' !text-lg'}>
-										Build
+										{dict.titles.build}
 									</CustomLink>
 								</li>
 							</div>
@@ -93,7 +96,7 @@ export default function Header({ lang }: { lang: string }) {
 								style={{
 									fontWeight: pathname.startsWith('/about') ? 'light' : 200
 								}}>
-								About Us
+								{dict.components.header.about}
 							</CustomLink>
 						</li>
 						<li>
@@ -115,7 +118,7 @@ export default function Header({ lang }: { lang: string }) {
 								style={{
 									fontWeight: pathname.startsWith('/contact') ? 'light' : 200
 								}}>
-								Testimonials
+								{dict.components.header.testimonials}
 							</CustomLink>
 						</li>
 						<li>
@@ -126,7 +129,7 @@ export default function Header({ lang }: { lang: string }) {
 								style={{
 									fontWeight: pathname.startsWith('/contact') ? 'light' : 200
 								}}>
-								Contact
+								{dict.components.header.contact}
 							</CustomLink>
 						</li>
 					</div>

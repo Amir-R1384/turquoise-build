@@ -6,6 +6,7 @@
 		"getStarted": "Get Started",
 		"projects": "Projects",
 		"testimonial": "What past clients say",
+		"newTestimonial": "Write your opinion about us",
 		"design": "Design",
 		"build": "Construire"
 	},
@@ -21,7 +22,8 @@
 	"components": {
 		"header": {
 			"testimonials": "Testimonials",
-			"contact": "Contact"
+			"contact": "Contact",
+			"about": "About Us"
 		},
 		"projectBanner": {
 			"more": "More about this project"
@@ -44,7 +46,10 @@
 		"email": "Email",
 		"projectDescription": "Project description (Optional)",
 		"guide": "Use our gudie",
-		"describe": "Provide your own description"
+		"describe": "Provide your own description",
+		"sameEmail": "Email used when submitting request",
+		"rating": "Rating",
+		"message": "Message"
 	},
 	"buttons": {
 		"submit": "Submit",
@@ -56,8 +61,11 @@
 		"requestSuccess": "Your request was submitted.",
 		"testimonialSuccess": "Thank you for your feedback",
 		"duplicateRequest": "You have already submitted a request. Please wait and our team will contact you.",
-		"duplicateTestimonial": "You have already submitted a testimonial.",
+		"duplicateTestimonial": "You have already submitted your opinion.",
 		"weWillContact": "We will contact you shortly to discuss your project.",
 		"projectnotFinished": "Your project is not finished yet, you can write a review once it's finished."
+	},
+	"others": {
+		"or": "Or"
 	}
 }

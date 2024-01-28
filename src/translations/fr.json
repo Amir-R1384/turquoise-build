@@ -1,63 +1,71 @@
 {
 	"titles": {
-		"about": "About Us",
-		"contact": "Contact Us",
-		"faq": "Frequently asked questions",
-		"getStarted": "Get Started",
-		"projects": "Projects",
-		"testimonial": "What past clients say",
+		"about": "À propos de nous",
+		"contact": "Nous contacter",
+		"faq": "Questions fréquemment demandées",
+		"getStarted": "Faire une demande",
+		"projects": "Projets",
+		"testimonial": "Ce que les clients passés disent",
+		"newTestimonial": "Écrivez votre opinion de nous",
 		"design": "Design",
 		"build": "Construire"
 	},
 	"pages": {
 		"contact": {
-			"emailUs": "Email us at ",
-			"phone": "Telephone: "
+			"emailUs": "Envoyez-nous un courriel à ",
+			"phone": "Téléphone: "
 		},
 		"home": {
-			"ideasToHome": "Turn ideas into Home"
+			"ideasToHome": "Transformez des idées en maison"
 		}
 	},
 	"components": {
 		"header": {
-			"testimonials": "Testimonials",
-			"contact": "Contact"
+			"testimonials": "Témoignages",
+			"contact": "Contacter",
+			"about": "À propos"
 		},
 		"projectBanner": {
-			"more": "More about this project"
+			"more": "Plus à propos du projet"
 		}
 	},
 	"labels": {
-		"region": "Region",
-		"area": "Area estimation",
-		"rooms": "Rooms to renovate",
-		"bedroom": "Bedroom",
-		"bathroom": "Bathroom",
-		"kitchen": "Kitchen",
-		"livingRoom": "Living Room",
-		"diningRoom": "Dining Room",
-		"garden": "Garden",
-		"startAt": "Start at",
-		"endBy": "End by",
-		"contactInformation": "Contact information (Required)",
-		"name": "Name",
+		"region": "Région",
+		"area": "Superficie approximative",
+		"rooms": "Chambres à rénover",
+		"bedroom": "Chambre à coucher",
+		"bathroom": "Salle de bain",
+		"kitchen": "Cuisine",
+		"livingRoom": "Salon",
+		"diningRoom": "Salle à manger",
+		"garden": "Jardin",
+		"startAt": "Commencer à",
+		"endBy": "Finir avant",
+		"contactInformation": "Coordonées (Requis)",
+		"name": "Nom",
 		"email": "Email",
-		"projectDescription": "Project description (Optional)",
-		"guide": "Use our gudie",
-		"describe": "Provide your own description"
+		"projectDescription": "Description du projet (Optionel)",
+		"guide": "Utiliser notre guide",
+		"describe": "Fournir votre propre description",
+		"sameEmail": "Email utilisé lors de la demande",
+		"rating": "Note",
+		"message": "Message"
 	},
 	"buttons": {
-		"submit": "Submit",
-		"addTestimonial": "Worked with us? Write your opinion",
-		"getStarted": "Tell us about your project"
+		"submit": "Soumettre",
+		"addTestimonial": "Avez travaillé avec nous? Partagez votre opinion",
+		"getStarted": "Dites-nous de votre projet"
 	},
 	"messages": {
-		"error": "Something went wrong. Please try again later.",
-		"requestSuccess": "Your request was submitted.",
-		"testimonialSuccess": "Thank you for your feedback",
-		"duplicateRequest": "You have already submitted a request. Please wait and our team will contact you.",
-		"duplicateTestimonial": "You have already submitted a testimonial.",
-		"weWillContact": "We will contact you shortly to discuss your project.",
-		"projectnotFinished": "Your project is not finished yet, you can write a review once it's finished."
+		"error": "Quelque chose s'est mal passé. Veuillez réessayer plus tard.",
+		"requestSuccess": "Votre demande a été soumise.",
+		"testimonialSuccess": "Merci pour votre avis.",
+		"duplicateRequest": "Vous avez déjà soumis une demande. Veuillez patienter et notre équipe vous contactera.",
+		"duplicateTestimonial": "Vous avez déjà soumis votre avis.",
+		"weWillContact": "Nous vous contacterons sous peu pour discuter de votre projet.",
+		"projectnotFinished": "Votre projet n'est pas encore terminé, vous pouvez rédiger un avis une fois terminé."
+	},
+	"others": {
+		"or": "Ou"
 	}
 }

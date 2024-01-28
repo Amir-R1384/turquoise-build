@@ -1,10 +1,11 @@
-import 'server-only'
+import en from './en.json'
+import fr from './fr.json'
 
 const dictionaries = {
-	en: import('./en.json').then(module => module.default),
-	fr: import('./fr.json').then(module => module.default)
+	en,
+	fr
 }
 
-export default async function getTranslation(lang: string) {
+export default function getTranslation(lang: string) {
 	return dictionaries[lang as Lang]
 }
