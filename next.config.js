@@ -8,6 +8,11 @@ const nextConfig = {
 				hostname: 'cdn.sanity.io'
 			}
 		]
+	},
+	logging: {
+		fetches: {
+			fullUrl: true
+		}
 	}
 }
 

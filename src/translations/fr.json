@@ -1,3 +1,63 @@
 {
-	"helloWorld": "BONJOUR LE MONE CALISSE DE TABARNAQUE"
+	"titles": {
+		"about": "About Us",
+		"contact": "Contact Us",
+		"faq": "Frequently asked questions",
+		"getStarted": "Get Started",
+		"projects": "Projects",
+		"testimonial": "What past clients say",
+		"design": "Design",
+		"build": "Construire"
+	},
+	"pages": {
+		"contact": {
+			"emailUs": "Email us at ",
+			"phone": "Telephone: "
+		},
+		"home": {
+			"ideasToHome": "Turn ideas into Home"
+		}
+	},
+	"components": {
+		"header": {
+			"testimonials": "Testimonials",
+			"contact": "Contact"
+		},
+		"projectBanner": {
+			"more": "More about this project"
+		}
+	},
+	"labels": {
+		"region": "Region",
+		"area": "Area estimation",
+		"rooms": "Rooms to renovate",
+		"bedroom": "Bedroom",
+		"bathroom": "Bathroom",
+		"kitchen": "Kitchen",
+		"livingRoom": "Living Room",
+		"diningRoom": "Dining Room",
+		"garden": "Garden",
+		"startAt": "Start at",
+		"endBy": "End by",
+		"contactInformation": "Contact information (Required)",
+		"name": "Name",
+		"email": "Email",
+		"projectDescription": "Project description (Optional)",
+		"guide": "Use our gudie",
+		"describe": "Provide your own description"
+	},
+	"buttons": {
+		"submit": "Submit",
+		"addTestimonial": "Worked with us? Write your opinion",
+		"getStarted": "Tell us about your project"
+	},
+	"messages": {
+		"error": "Something went wrong. Please try again later.",
+		"requestSuccess": "Your request was submitted.",
+		"testimonialSuccess": "Thank you for your feedback",
+		"duplicateRequest": "You have already submitted a request. Please wait and our team will contact you.",
+		"duplicateTestimonial": "You have already submitted a testimonial.",
+		"weWillContact": "We will contact you shortly to discuss your project.",
+		"projectnotFinished": "Your project is not finished yet, you can write a review once it's finished."
+	}
 }

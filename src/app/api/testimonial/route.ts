@@ -1,3 +1,6 @@
+'use server'
+
+import { revalidatePath, unstable_noStore } from 'next/cache'
 import { NextRequest, NextResponse } from 'next/server'
 import {
 	doesCustomerExist,
@@ -5,9 +8,9 @@ import {
 	getTestimonials
 } from '../../../../sanity/lib/functions'
 
-export const fetchCache = 'force-no-store'
-
 export async function POST(request: NextRequest) {
+	unstable_noStore()
+
 	try {
 		// Name and Email validation
 		const { name, email, rating, message } = await request.json()
@@ -70,8 +73,10 @@ export async function POST(request: NextRequest) {
 			}
 		)
 
+		revalidatePath('/contact')
+
 		if (res.ok) return NextResponse.json({ type: 'success' }, { status: 200 })
 	} catch (err) {
-		return { type: 'unhandledError' }
+		return NextResponse.json({ type: 'unhandledError' }, { status: 500 })
 	}
 }

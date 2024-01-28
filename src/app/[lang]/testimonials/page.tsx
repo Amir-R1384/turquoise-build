@@ -2,8 +2,6 @@ import CustomLink from '@/components/CustomLink'
 import Stars from '@/components/Stars'
 import { getTestimonials } from '../../../../sanity/lib/functions'
 
-export const fetchCache = 'force-no-store'
-
 export default async function Testimonials({ params }: PageProps) {
 	const testimonials = await getTestimonials()
 
