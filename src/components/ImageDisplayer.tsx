@@ -47,14 +47,14 @@ export default function ImageDisplayer() {
 	}, [imageArray])
 
 	return (
-		<section className="h-[min(80vw,400px)] mt-10 relative w-full">
+		<section className="h-[min(80vw,500px)] mt-10 relative w-full">
 			{imageArray.map((el, i) => (
 				<Link
 					href="/#"
 					key={el}
 					style={{
 						transform: `translate(calc(-50% + ${
-							(i - 3 + translate) * 420
+							(i - 3 + translate) * 620
 						}px), calc(-50%))`,
 						opacity:
 							i - 3 + translate === 0
@@ -63,12 +63,12 @@ export default function ImageDisplayer() {
 								? 0.1
 								: 0,
 						transitionDuration: `${TRANSITION_DURATION}ms`,
-						backgroundImage: `url(/assets/images/${el}.png)`
+						backgroundImage: `url(/assets/images/${el}.jpg)`
 					}}
-					className="absolute w-[min(80vw,400px)] h-[min(80vw,400px)] top-1/2 left-1/2 origin-center transition-all"
+					className="absolute w-[min(90vw,600px)] bg-center bg-cover h-[min(80vw,500px)] top-1/2 left-1/2 origin-center transition-all"
 				/>
 			))}
-			<div className="absolute w-[min(80vw,400px)] mt-2 flex justify-between items-center top-full left-1/2 -translate-x-1/2">
+			<div className="absolute w-[min(90vw,600px)] mt-3 flex justify-between items-center top-full left-1/2 -translate-x-1/2">
 				<button onClick={() => setPaused(prev => !prev)}>
 					<Image
 						alt="Pause/Resume"
