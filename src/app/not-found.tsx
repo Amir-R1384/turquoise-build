@@ -18,7 +18,10 @@ const translations = {
 }
 
 export default function notFound() {
-	const lang = navigator.language.toLowerCase().includes('fr') ? 'fr' : 'en'
+	const lang =
+		typeof navigator !== 'undefined' && navigator.language.toLowerCase().includes('fr')
+			? 'fr'
+			: 'en'
 
 	return (
 		<div
