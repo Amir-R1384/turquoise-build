@@ -145,8 +145,8 @@ export default function Header({ lang }: { lang: string }) {
 							</a>
 							<a href="#" target="_blank">
 								<Image
-									alt="LinkedIn link"
-									src="/assets/icons/linkedin.svg"
+									alt="Facebook link"
+									src="/assets/icons/facebook.svg"
 									width={30}
 									height={30}
 								/>

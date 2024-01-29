@@ -27,6 +27,7 @@ export default async function ServiceLayout({ lang, path }: Props) {
 						src={urlForImage(image)}
 						width={500}
 						height={0}
+						className="w-full h-full"
 					/>
 				))}
 			</div>

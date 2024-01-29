@@ -35,16 +35,8 @@ export default async function Contact({ params }: PageProps) {
 					</a>
 					<a href="#" target="_blank">
 						<Image
-							alt="LinkedIn link"
-							src="/assets/icons/linkedin.svg"
-							width={30}
-							height={30}
-						/>
-					</a>
-					<a href="#" target="_blank">
-						<Image
-							alt="Pinterest link"
-							src="/assets/icons/pinterest.svg"
+							alt="Facebook link"
+							src="/assets/icons/facebook.svg"
 							width={30}
 							height={30}
 						/>
