@@ -24,7 +24,7 @@
 		"recoil": "^0.7.7",
 		"sanity": "^3.24.1",
 		"sanity-plugin-internationalized-array": "^1.10.4",
-		"styled-components": "^6.1.8",
+		"styled-components": "^5.3.6",
 		"styled-components5.3.11": "npm:styled-components@^5.3.11"
 	},
 	"devDependencies": {
