@@ -31,7 +31,9 @@ export default function CustomLink({ href, lang, children, ...args }: Props) {
 		}, pageTransitionDuration)
 	}
 
-	useEffect(() => setTransitioning(false), [pathname, setTransitioning])
+	useEffect(() => {
+		setTimeout(() => setTransitioning(false), 100)
+	}, [pathname, setTransitioning])
 
 	return (
 		<button {...args} onClick={onClick}>
