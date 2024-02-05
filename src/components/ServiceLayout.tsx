@@ -19,7 +19,7 @@ export default async function ServiceLayout({ lang, path }: Props) {
 		<div className="md-container space-y-10">
 			{/* @ts-ignore */}
 			<div className="title font-extralight">{dict.titles[path.toLowerCase()]}</div>
-			<div className="grid grid-cols-2 w-full gap-[min(2rem,3vw)]">
+			<div className="grid sm:grid-cols-2 grid-cols-1 w-full gap-[min(2rem,3vw)]">
 				{service.images.map((image: any, i: number) => (
 					<Image
 						key={i}
