@@ -63,6 +63,7 @@ export default function CreateTestimonial({ params }: PageProps) {
 
 	return (
 		<div className="md-container">
+			<title>{dict.titles.newTestimonial}</title>
 			<div className="title mb-10">{dict.titles.newTestimonial}</div>
 			<div className="space-y-5">
 				<div className="flex flex-col gap-y-2">
@@ -116,16 +117,16 @@ export default function CreateTestimonial({ params }: PageProps) {
 						status === 'success'
 							? 'text-green-600'
 							: status === 'projectNotFinished' || status === 'duplicate'
-							? 'text-red-600'
-							: ''
+								? 'text-red-600'
+								: ''
 					} text-center`}>
 					{status === 'success'
 						? dict.messages.testimonialSuccess
 						: status === 'projectNotFinished'
-						? dict.messages.projectnotFinished
-						: status === 'duplicate'
-						? dict.messages.duplicateTestimonial
-						: ''}
+							? dict.messages.projectnotFinished
+							: status === 'duplicate'
+								? dict.messages.duplicateTestimonial
+								: ''}
 				</p>
 			</div>
 		</div>

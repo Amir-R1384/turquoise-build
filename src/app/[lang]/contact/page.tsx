@@ -1,6 +1,19 @@
 import getTranslation from '@/translations'
-import Image from 'next/image'
+import { Metadata, ResolvingMetadata } from 'next'
 import { getGeneral } from '../../../../sanity/lib/functions'
+
+export async function generateMetadata(
+	{ params }: PageProps,
+	parent: ResolvingMetadata
+): Promise<Metadata> {
+	const lang = params.lang
+
+	const dict = getTranslation(lang)
+
+	return {
+		title: dict.titles.contact
+	}
+}
 
 export default async function Contact({ params }: PageProps) {
 	const dict = getTranslation(params.lang)
@@ -24,7 +37,7 @@ export default async function Contact({ params }: PageProps) {
 					<span>{dict.pages.contact.phone}</span>
 					<span className="font-light">{formattedTel}</span>
 				</a>
-				<div className="flex gap-5 items-center mt-5">
+				{/* <div className="flex gap-5 items-center mt-5">
 					<a href="#" target="_blank">
 						<Image
 							alt="Instagram link"
@@ -41,7 +54,7 @@ export default async function Contact({ params }: PageProps) {
 							height={30}
 						/>
 					</a>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	)

@@ -60,8 +60,8 @@ export default function ImageDisplayer() {
 							i - 3 + translate === 0
 								? 1
 								: Math.abs(i - 3 + translate) === 1
-								? 0.1
-								: 0,
+									? 0.1
+									: 0,
 						transitionDuration: `${TRANSITION_DURATION}ms`,
 						backgroundImage: `url(/assets/images/${el}.jpg)`
 					}}

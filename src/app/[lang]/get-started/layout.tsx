@@ -31,7 +31,7 @@ export default function GetStatrted({ params, children }: any) {
 				? {
 						...requestForm,
 						description: ''
-				  }
+					}
 				: {
 						...requestForm,
 						region: '',
@@ -46,7 +46,7 @@ export default function GetStatrted({ params, children }: any) {
 						},
 						startDate: '',
 						endDate: ''
-				  }
+					}
 
 		try {
 			const res = await fetch('/api/request', {
@@ -86,6 +86,7 @@ export default function GetStatrted({ params, children }: any) {
 
 	return (
 		<div className="md-container">
+			<title>{dict.titles.getStarted}</title>
 			<div className="title text-center font-extralight mb-10">{dict.titles.getStarted}</div>
 			<div className="space-y-10">
 				<div className="space-y-5">
@@ -157,14 +158,14 @@ export default function GetStatrted({ params, children }: any) {
 								status === 'success'
 									? 'text-green-600'
 									: status === 'duplicate'
-									? 'text-red-600'
-									: ''
+										? 'text-red-600'
+										: ''
 							} text-center`}>
 							{status === 'success'
 								? dict.messages.requestSuccess
 								: status === 'duplicate'
-								? dict.messages.duplicateRequest
-								: dict.messages.weWillContact}
+									? dict.messages.duplicateRequest
+									: dict.messages.weWillContact}
 						</p>
 					</div>
 				)}

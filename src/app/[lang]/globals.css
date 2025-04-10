@@ -42,7 +42,7 @@
 
 @layer utilities {
 	.headerBlur {
-		@apply bg-white bg-opacity-60 backdrop-blur-md;
+		@apply bg-white bg-opacity-60 backdrop-blur-md lg:bg-opacity-0 lg:backdrop-blur-0;
 	}
 }
 

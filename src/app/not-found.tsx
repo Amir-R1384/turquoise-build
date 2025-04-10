@@ -1,10 +1,13 @@
 'use client'
 
-import { Source_Serif_4 } from 'next/font/google'
+import { Raleway } from 'next/font/google'
 import Link from 'next/link'
 import './[lang]/globals.css'
 
-const source_serif_4 = Source_Serif_4({ subsets: ['latin'], weight: ['200', '300', '400', '500'] })
+const raleway = Raleway({
+	subsets: ['latin'],
+	weight: ['100', '200', '300', '400', '500', '600']
+})
 
 const translations = {
 	noPage: {
@@ -12,9 +15,13 @@ const translations = {
 		fr: "La page que vous cherchez n'existe pas ou elle a été enlevée"
 	},
 	return: {
-		en: 'Return to Home Screen',
-		fr: 'Retourner à la maison'
+		en: 'Return to Home',
+		fr: 'Retourner à la Maison'
 	}
+}
+
+export const metadata = {
+	title: 'Construction Turquoise'
 }
 
 export default function notFound() {
@@ -26,8 +33,7 @@ export default function notFound() {
 	return (
 		<div
 			className={
-				source_serif_4.className +
-				' px-main flex text-center flex-col items-center gap-y-10 pt-20'
+				raleway.className + ' px-main flex text-center flex-col items-center gap-y-10 pt-20'
 			}>
 			<h1 className="text-4xl ">{translations.noPage[lang]}</h1>
 			<Link href={lang === 'en' ? '/' : '/fr'} className="button">

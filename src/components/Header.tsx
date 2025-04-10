@@ -31,7 +31,7 @@ export default function Header({ lang }: { lang: string }) {
 						alt="Logo image"
 						width={31}
 						height={31}></Image>
-					<div className="text-xl md:text-2xl">Construction Turquoise</div>
+					<div className="text-xl md:text-2xl select-none">Construction Turquoise</div>
 				</CustomLink>
 
 				<button onClick={() => setMenuOpen(prev => !prev)}>
@@ -134,7 +134,7 @@ export default function Header({ lang }: { lang: string }) {
 						</li>
 					</div>
 					<div className="space-y-4">
-						<div className="flex gap-5 items-center mt-5">
+						{/* <div className="flex gap-5 items-center mt-5">
 							<a href="#" target="_blank">
 								<Image
 									alt="Instagram link"
@@ -151,7 +151,7 @@ export default function Header({ lang }: { lang: string }) {
 									height={30}
 								/>
 							</a>
-						</div>
+						</div> */}
 						<div className="cursor-pointer border py-0.5 pl-2 pr-0 border-stone-500">
 							<select
 								value={lang}

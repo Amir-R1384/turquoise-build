@@ -1,7 +1,21 @@
 import CustomLink from '@/components/CustomLink'
 import Stars from '@/components/Stars'
 import getTranslation from '@/translations'
+import { Metadata, ResolvingMetadata } from 'next'
 import { getTestimonials } from '../../../../sanity/lib/functions'
+
+export async function generateMetadata(
+	{ params }: PageProps,
+	parent: ResolvingMetadata
+): Promise<Metadata> {
+	const lang = params.lang
+
+	const dict = getTranslation(lang)
+
+	return {
+		title: dict.titles.testimonial
+	}
+}
 
 export default async function Testimonials({ params }: PageProps) {
 	const dict = getTranslation(params.lang)

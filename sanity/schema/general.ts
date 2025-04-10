@@ -3,7 +3,9 @@ import { defineField, defineType } from 'sanity'
 
 /**
 - Name (hidden)
-- About us image
+- Team[]
+	- Image
+	- Name
 - About us text
 - Email
 - Phone number
@@ -22,9 +24,29 @@ const generalType = defineType({
 			hidden: true
 		}),
 		defineField({
-			type: 'image',
-			name: 'aboutUsImage',
-			title: 'About us Image',
+			type: 'array',
+			name: 'team',
+			title: 'Team',
+			of: [
+				{
+					type: 'object',
+					name: 'member',
+					fields: [
+						{
+							type: 'image',
+							name: 'image',
+							title: 'Image',
+							validation: Rule => Rule.required()
+						},
+						{
+							type: 'string',
+							name: 'name',
+							title: 'Name',
+							validation: Rule => Rule.required()
+						}
+					]
+				}
+			],
 			validation: Rule => Rule.required()
 		}),
 		defineField({
