@@ -3,10 +3,10 @@
 import * as EmailValidator from 'email-validator'
 import { unstable_noStore } from 'next/cache'
 import { NextRequest, NextResponse } from 'next/server'
+import { Resend } from 'resend'
 import { doesCustomerExist } from '../../../../sanity/lib/functions'
 
-const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: NextRequest) {
 	unstable_noStore()
@@ -68,10 +68,10 @@ export async function POST(request: NextRequest) {
 		)
 
 		if (res.ok) {
-			const msg = {
-				to: process.env.ADMIN_EMAIL,
-				from: process.env.SENDER_EMAIL,
-				subject: 'NEW CUSTOMER',
+			const emailRes = await resend.emails.send({
+				from: 'Construction Turquoise<hello@turquoisebuild.com>',
+				to: JSON.parse(process.env.ADMIN_EMAILS!),
+				subject: 'New Client!',
 				html: `<html>
 						<body>
 							<h1>NEW CUSTOMER</h1>
@@ -81,15 +81,22 @@ export async function POST(request: NextRequest) {
 								<li>Name: ${name}</li>
 								<li>Email: ${email}</li>
 							</ul>
+
+							<p>Check the dashboard for more information about the client</p>
 						</body>
 					</html>`
-			}
+			})
 
-			await sgMail.send(msg)
+			if (emailRes.error) console.error(JSON.stringify(emailRes.error))
 
 			return NextResponse.json({ type: 'success' }, { status: 200 })
+		} else {
+			const json = await res.json()
+			console.error(json)
+			return NextResponse.json({ type: 'unhandledError' }, { status: 500 })
 		}
 	} catch (err) {
+		console.error(err)
 		return NextResponse.json({ type: 'unhandledError' }, { status: 500 })
 	}
 }

@@ -24,14 +24,14 @@ export default async function Project({ params }: PageProps) {
 					alt="Image of the project"
 					src={urlForImage(starterImages[0])}
 					width={500}
-					height={0}
+					height={200}
 				/>
 				<Image
 					className="mx-auto w-[100%]"
 					alt="Image of the project"
 					src={urlForImage(starterImages[1])}
 					width={500}
-					height={0}
+					height={200}
 				/>
 			</div>
 			<section className="px-0 space-y-4 mb-5">
@@ -46,21 +46,21 @@ export default async function Project({ params }: PageProps) {
 					alt="Image of the project"
 					src={urlForImage(moreImages[0])}
 					width={500}
-					height={0}
+					height={200}
 				/>
 				<Image
 					className="mx-auto w-[100%]"
 					alt="Image of the project"
 					src={urlForImage(moreImages[1])}
 					width={500}
-					height={0}
+					height={200}
 				/>
 				<Image
 					className="mx-auto w-[100%]"
 					alt="Image of the project"
 					src={urlForImage(moreImages[2])}
 					width={500}
-					height={0}
+					height={200}
 				/>
 			</div>
 

@@ -14,7 +14,7 @@ export default function Main({ children }: { children: ReactNode }) {
 				opacity: transitioning ? 0 : 1,
 				transitionDuration: `${pageTransitionDuration}ms`
 			}}
-			className="my-headerHeight mx-auto max-w-screen-lg overflow-x-clip">
+			className="my-headerHeight mx-auto max-w-screen-lg">
 			{children}
 		</main>
 	)

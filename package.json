@@ -22,9 +22,10 @@
 		"react": "^18",
 		"react-dom": "^18",
 		"recoil": "^0.7.7",
+		"resend": "^4.2.0",
 		"sanity": "^3.24.1",
 		"sanity-plugin-internationalized-array": "^1.10.4",
-		"styled-components": "^5.3.6",
+		"styled-components": "^6.0.0",
 		"styled-components5.3.11": "npm:styled-components@^5.3.11"
 	},
 	"devDependencies": {

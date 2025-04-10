@@ -45,7 +45,7 @@
 		"name": "Name",
 		"email": "Email",
 		"projectDescription": "Project description (Optional)",
-		"guide": "Use our gudie",
+		"guide": "Use our guide",
 		"describe": "Provide your own description",
 		"sameEmail": "Email used when submitting request",
 		"rating": "Rating",
@@ -67,5 +67,8 @@
 	},
 	"others": {
 		"or": "Or"
+	},
+	"seo": {
+		"description": "Construction Turquoise is a Montreal-based renovation company with 5+ years of experience in transforming living spaces."
 	}
 }

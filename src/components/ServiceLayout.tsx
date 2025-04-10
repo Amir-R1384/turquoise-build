@@ -26,7 +26,7 @@ export default async function ServiceLayout({ lang, path }: Props) {
 						alt="Show case photos"
 						src={urlForImage(image)}
 						width={500}
-						height={0}
+						height={300}
 						className="w-full h-full"
 					/>
 				))}
