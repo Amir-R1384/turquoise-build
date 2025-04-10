@@ -17,6 +17,11 @@ const projectType = defineType({
 	fields: [
 		defineField({
 			type: 'string',
+			name: 'orderRank',
+			hidden: true
+		}),
+		defineField({
+			type: 'string',
 			name: 'name',
 			title: 'Project Name',
 			validation: Rule => Rule.required()

@@ -10,7 +10,9 @@ const projectFormat = (lang: string) => `{
 
 export async function getProjects(lang: string) {
 	unstable_noStore()
-	const docs = await sanityClient.fetch(`*[_type == "project"] ${projectFormat(lang)}`)
+	const docs = await sanityClient.fetch(
+		`*[_type == "project"]|order(orderRank) ${projectFormat(lang)}`
+	)
 
 	return docs
 }
