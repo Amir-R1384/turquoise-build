@@ -44,8 +44,7 @@ const projectType = defineType({
 		defineField({
 			type: 'internationalizedArrayMarkdown',
 			name: 'overview',
-			title: 'Overview',
-			validation: Rule => Rule.required()
+			title: 'Overview'
 		}),
 		defineField({
 			type: 'array',
@@ -57,15 +56,13 @@ const projectType = defineType({
 		defineField({
 			type: 'internationalizedArrayMarkdown',
 			name: 'details',
-			title: 'Details',
-			validation: Rule => Rule.required()
+			title: 'Details'
 		}),
 		defineField({
 			type: 'array',
 			of: [{ type: 'image' }],
 			name: 'moreImages',
-			title: 'More images',
-			validation: Rule => Rule.required()
+			title: 'More images'
 		})
 	]
 })
