@@ -1,10 +1,10 @@
 'use client'
 
 import { requestFormAtom } from '@/atoms'
-import { useRecoilState } from 'recoil'
+import { useAtom } from 'jotai'
 
 export default function Describe() {
-	const [requestForm, setRequestForm] = useRecoilState(requestFormAtom)
+	const [requestForm, setRequestForm] = useAtom(requestFormAtom)
 
 	return (
 		<textarea

@@ -2,26 +2,15 @@ import Header from '@/components/Header'
 import Main from '@/components/Main'
 import Wrapper from '@/components/Wrapper'
 import getTranslation from '@/translations'
-import type { Metadata, ResolvingMetadata, Viewport } from 'next'
-import { Raleway } from 'next/font/google'
+import type { Metadata } from 'next'
 import './globals.css'
-
-const raleway = Raleway({
-	subsets: ['latin'],
-	weight: ['100', '200', '300', '400', '500', '600']
-})
 
 const title = 'Construction Turquoise'
 const baseUrl = 'https://turquoisebuild.com'
 
-export async function generateMetadata(
-	{ params }: PageProps,
-	parent: ResolvingMetadata
-): Promise<Metadata> {
-	const lang = params.lang
-
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+	const { lang } = await params
 	const dict = getTranslation(lang)
-
 	const description = dict.seo.description
 
 	return {
@@ -30,9 +19,6 @@ export async function generateMetadata(
 			template: `%s | ${title}`
 		},
 		description,
-		generator: title,
-		applicationName: title,
-		referrer: 'origin-when-cross-origin',
 		keywords: [title, 'Renovation', 'Construction', 'Building', 'Montreal'],
 		metadataBase: new URL(baseUrl),
 		alternates: {
@@ -61,15 +47,9 @@ export async function generateMetadata(
 			card: 'summary_large_image',
 			title,
 			description,
-			images: [`${baseUrl}/twitter-image.jpg`] // Must be an absolute URL
+			images: [`${baseUrl}/twitter-image.jpg`]
 		}
 	}
-}
-
-export const viewport: Viewport = {
-	width: 'device-width',
-	initialScale: 1,
-	maximumScale: 1
 }
 
 export const fetchCache = 'force-no-store'
@@ -78,23 +58,19 @@ export function generateStaticParams() {
 	return [{ lang: 'en' }]
 }
 
-export default function RootLayout({
+export default async function LangLayout({
 	children,
 	params
 }: {
 	children: React.ReactNode
-	params: any
+	params: PageProps['params']
 }) {
+	const { lang } = await params
+
 	return (
-		<html lang={params.lang}>
-			<body className={`${raleway.className}`}>
-				<div className="w-screen overflow-x-hidden">
-					<Wrapper>
-						<Header lang={params.lang} />
-						<Main>{children}</Main>
-					</Wrapper>
-				</div>
-			</body>
-		</html>
+		<Wrapper>
+			<Header lang={lang} />
+			<Main>{children}</Main>
+		</Wrapper>
 	)
 }

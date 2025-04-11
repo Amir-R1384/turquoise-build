@@ -1,13 +1,10 @@
 import Accordian from '@/components/Accordian'
 import getTranslation from '@/translations'
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata } from 'next'
 import { getFAQs } from '../../../../sanity/lib/functions'
 
-export async function generateMetadata(
-	{ params }: PageProps,
-	parent: ResolvingMetadata
-): Promise<Metadata> {
-	const lang = params.lang
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+	const { lang } = await params
 
 	const dict = getTranslation(lang)
 
@@ -17,9 +14,10 @@ export async function generateMetadata(
 }
 
 export default async function FAQ({ params }: PageProps) {
-	const dict = getTranslation(params.lang)
+	const { lang } = await params
+	const dict = getTranslation(lang)
 
-	const faqs: { question: string; answer: string }[] = await getFAQs(params.lang)
+	const faqs: { question: string; answer: string }[] = await getFAQs(lang)
 
 	return (
 		<div className="md-container">

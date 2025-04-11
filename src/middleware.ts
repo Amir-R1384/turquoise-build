@@ -4,7 +4,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { defaultLang, langs } from '../appConfig'
 
 export function middleware(request: NextRequest) {
-	const langCookie = request.cookies.get('lang')?.value
+	const langCookie = request.cookies.get('lang')?.value as Lang | undefined
 	const { pathname } = request.nextUrl
 
 	// If no cookie

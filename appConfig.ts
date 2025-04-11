@@ -1,5 +1,5 @@
 // Language
-export const langs = ['en', 'fr']
+export const langs: Lang[] = ['en', 'fr']
 export const defaultLang = 'en'
 
 // Image displayer

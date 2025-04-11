@@ -7,18 +7,20 @@ import { getProjectByUrlName } from '../../../../../sanity/lib/functions'
 import { urlForImage } from '../../../../../sanity/lib/image'
 
 export default async function Project({ params }: PageProps) {
-	const dict = getTranslation(params.lang)
-	const project = await getProjectByUrlName(params.urlName, params.lang)
+	const { lang, urlName } = await params
+	const dict = getTranslation(lang)
+	const project = await getProjectByUrlName(urlName, lang)
 
 	const { name, startDate, endDate, overview, starterImages, details, moreImages } = project
 
-	const date = `${expressAsYearAndMonth(startDate, params.lang)} - ${expressAsYearAndMonth(
+	const date = `${expressAsYearAndMonth(startDate, lang)} - ${expressAsYearAndMonth(
 		endDate,
-		params.lang
+		lang
 	)}`
 
 	return (
-		<div className="@container md-container  flex flex-col   gap-y-2 md:gap-y-5">
+		<div className="@container md-container  flex flex-col gap-y-2 md:gap-y-5">
+			<title>{name}</title>
 			<h1 className="text-4xl font-thin md:text-5xl text-left">{name}</h1>
 			<div className="text-lg md:text-xl mb-5">{date}</div>
 			<div className="grid grid-cols-1 gap-main mb-5">
@@ -66,7 +68,7 @@ export default async function Project({ params }: PageProps) {
 				</section>
 			)}
 
-			<CustomLink lang={params.lang} href="/get-started" className="button block mx-auto">
+			<CustomLink lang={lang} href="/get-started" className="button block mx-auto">
 				{dict.buttons.getStarted}
 			</CustomLink>
 		</div>

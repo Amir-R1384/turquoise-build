@@ -1,12 +1,12 @@
 'use client'
 
 import { transitioningAtom } from '@/atoms'
+import { useAtomValue } from 'jotai'
 import type { ReactNode } from 'react'
-import { useRecoilValue } from 'recoil'
 import { pageTransitionDuration } from '../../appConfig'
 
 export default function Main({ children }: { children: ReactNode }) {
-	const transitioning = useRecoilValue(transitioningAtom)
+	const transitioning = useAtomValue(transitioningAtom)
 
 	return (
 		<main

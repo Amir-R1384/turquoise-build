@@ -1,9 +1,9 @@
 'use client'
 
 import { transitioningAtom } from '@/atoms'
+import { useSetAtom } from 'jotai'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, type ReactNode } from 'react'
-import { useSetRecoilState } from 'recoil'
 import { defaultLang, pageTransitionDuration } from '../../appConfig'
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
 
 export default function CustomLink({ href, lang, children, ...args }: Props) {
 	const customHref = lang === defaultLang ? href : `/${lang}${href}`
-	const setTransitioning = useSetRecoilState(transitioningAtom)
+	const setTransitioning = useSetAtom(transitioningAtom)
 	const router = useRouter()
 	const pathname = usePathname()
 

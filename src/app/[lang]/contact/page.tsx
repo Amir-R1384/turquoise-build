@@ -1,12 +1,9 @@
 import getTranslation from '@/translations'
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata } from 'next'
 import { getGeneral } from '../../../../sanity/lib/functions'
 
-export async function generateMetadata(
-	{ params }: PageProps,
-	parent: ResolvingMetadata
-): Promise<Metadata> {
-	const lang = params.lang
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+	const { lang } = await params
 
 	const dict = getTranslation(lang)
 
@@ -16,9 +13,10 @@ export async function generateMetadata(
 }
 
 export default async function Contact({ params }: PageProps) {
-	const dict = getTranslation(params.lang)
+	const { lang } = await params
+	const dict = getTranslation(lang)
 
-	const general = await getGeneral(params.lang)
+	const general = await getGeneral(lang)
 
 	const { email, tel } = general
 

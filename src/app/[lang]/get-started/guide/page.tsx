@@ -3,11 +3,17 @@
 import { requestFormAtom } from '@/atoms'
 import CustomCheckbox from '@/components/CustomCheckbox'
 import getTranslation from '@/translations'
-import { useRecoilState } from 'recoil'
+import { useAtom } from 'jotai'
+import { useParams } from 'next/navigation'
 
-export default function Guide({ params }: PageProps) {
-	const dict = getTranslation(params.lang)
-	const [requestForm, setRequestForm] = useRecoilState(requestFormAtom)
+export default function Guide() {
+	const params = useParams()
+	const lang = params.lang as string
+
+	console.log(params)
+
+	const dict = getTranslation(lang)
+	const [requestForm, setRequestForm] = useAtom(requestFormAtom)
 
 	const { region, area, startDate, endDate } = requestForm
 	const { bedroom, bathroom, kitchen, livingRoom, diningRoom, garden } = requestForm.options

@@ -3,16 +3,20 @@
 import { requestFormAtom } from '@/atoms'
 import CustomLink from '@/components/CustomLink'
 import getTranslation from '@/translations'
-import { usePathname } from 'next/navigation'
+import { useAtom } from 'jotai'
+import { useParams, usePathname } from 'next/navigation'
 import { useState } from 'react'
-import { useRecoilState } from 'recoil'
 
 type Errors = { name: false | string; email: false | string }
 
-export default function GetStatrted({ params, children }: any) {
-	const dict = getTranslation(params.lang)
+export default function GetStatrted({ children }: any) {
+	const params = useParams()
+	const lang = params.lang as string
 
-	const [requestForm, setRequestForm] = useRecoilState(requestFormAtom)
+	// const {lang} = await params
+	const dict = getTranslation(lang as string)
+
+	const [requestForm, setRequestForm] = useAtom(requestFormAtom)
 	const [errors, setErrors] = useState<Errors>({ name: false, email: false }) // Only name and email are required so only those can be mistaken
 	const [loading, setLoading] = useState(false)
 	const [status, setStatus] = useState<'success' | 'duplicate' | null>(null)
@@ -124,7 +128,7 @@ export default function GetStatrted({ params, children }: any) {
 					<div className="text-2xl mb-5">{dict.labels.projectDescription}</div>
 					<div className="flex flex-col md:flex-row w-full justify-center items-center gap-x-5 gap-y-2">
 						<CustomLink
-							lang={params.lang}
+							lang={lang}
 							href="/get-started/guide"
 							className={`button ${
 								pathname.endsWith('guide') &&
@@ -134,7 +138,7 @@ export default function GetStatrted({ params, children }: any) {
 						</CustomLink>
 						<div className="text-lg">{dict.others.or}</div>
 						<CustomLink
-							lang={params.lang}
+							lang={lang}
 							href="/get-started/describe"
 							className={`button ${
 								pathname.endsWith('describe') &&

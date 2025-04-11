@@ -2,6 +2,8 @@
 
 import { Raleway } from 'next/font/google'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { defaultLang, langs } from '../../appConfig'
 import './[lang]/globals.css'
 
 const raleway = Raleway({
@@ -20,15 +22,16 @@ const translations = {
 	}
 }
 
-export const metadata = {
-	title: 'Construction Turquoise'
+function getLang(pathname: string): Lang {
+	for (const lang of langs) {
+		if (pathname.startsWith(`/${lang}`)) return lang
+	}
+	return defaultLang
 }
 
-export default function notFound() {
-	const lang =
-		typeof navigator !== 'undefined' && navigator.language.toLowerCase().includes('fr')
-			? 'fr'
-			: 'en'
+export default function NotFound() {
+	const pathname = usePathname()
+	const lang = getLang(pathname)
 
 	return (
 		<div

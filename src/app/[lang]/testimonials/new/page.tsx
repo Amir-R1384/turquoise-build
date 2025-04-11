@@ -2,10 +2,13 @@
 
 import Stars from '@/components/Stars'
 import getTranslation from '@/translations'
+import { useParams } from 'next/navigation'
 import { useState } from 'react'
 
-export default function CreateTestimonial({ params }: PageProps) {
-	const dict = getTranslation(params.lang)
+export default function CreateTestimonial() {
+	const params = useParams()
+	const lang = params.lang as string
+	const dict = getTranslation(lang)
 
 	const [status, setStatus] = useState<'success' | 'projectNotFinished' | 'duplicate' | null>(
 		null

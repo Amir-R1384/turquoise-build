@@ -1,14 +1,11 @@
 import CustomLink from '@/components/CustomLink'
 import Stars from '@/components/Stars'
 import getTranslation from '@/translations'
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata } from 'next'
 import { getTestimonials } from '../../../../sanity/lib/functions'
 
-export async function generateMetadata(
-	{ params }: PageProps,
-	parent: ResolvingMetadata
-): Promise<Metadata> {
-	const lang = params.lang
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+	const { lang } = await params
 
 	const dict = getTranslation(lang)
 
@@ -18,7 +15,8 @@ export async function generateMetadata(
 }
 
 export default async function Testimonials({ params }: PageProps) {
-	const dict = getTranslation(params.lang)
+	const { lang } = await params
+	const dict = getTranslation(lang)
 
 	const testimonials = await getTestimonials()
 
@@ -35,7 +33,7 @@ export default async function Testimonials({ params }: PageProps) {
 							</div>
 
 							<div>
-								{Intl.DateTimeFormat(params.locale, {
+								{Intl.DateTimeFormat(lang, {
 									year: 'numeric',
 									month: 'long',
 									day: 'numeric'
@@ -47,7 +45,7 @@ export default async function Testimonials({ params }: PageProps) {
 				))}
 			</div>
 			<CustomLink
-				lang={params.lang}
+				lang={lang}
 				href="/testimonials/new"
 				className="underline mx-auto mt-10 text-lg">
 				{dict.buttons.addTestimonial}

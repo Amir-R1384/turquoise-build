@@ -1,15 +1,12 @@
 import getTranslation from '@/translations'
 import { PortableText } from '@portabletext/react'
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import { getGeneral } from '../../../../sanity/lib/functions'
 import { urlForImage } from '../../../../sanity/lib/image'
 
-export async function generateMetadata(
-	{ params }: PageProps,
-	parent: ResolvingMetadata
-): Promise<Metadata> {
-	const lang = params.lang
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+	const { lang } = await params
 
 	const dict = getTranslation(lang)
 
@@ -19,9 +16,10 @@ export async function generateMetadata(
 }
 
 export default async function About({ params }: PageProps) {
-	const dict = getTranslation(params.lang)
+	const { lang } = await params
+	const dict = getTranslation(lang)
 
-	const general = await getGeneral(params.lang)
+	const general = await getGeneral(lang)
 
 	const { aboutUsText, team } = general
 

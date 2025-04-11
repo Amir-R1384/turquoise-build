@@ -3,9 +3,11 @@ type ImageState = {
 	images: ('hidden' | 'blurred' | 'visible')[]
 }
 
+type Params = { [key: string]: string }
+
 type PageProps = {
-	params: { [key: string]: string }
-	searchParams: { [key: string]: string }
+	params: Promise<Params>
+	searchParams: Promise<Params>
 }
 
 type Lang = 'en' | 'fr'
