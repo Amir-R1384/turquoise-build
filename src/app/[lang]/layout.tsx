@@ -35,6 +35,13 @@ export async function generateMetadata(
 		referrer: 'origin-when-cross-origin',
 		keywords: [title, 'Renovation', 'Construction', 'Building', 'Montreal'],
 		metadataBase: new URL(baseUrl),
+		alternates: {
+			canonical: '/',
+			languages: {
+				'en-CA': '/en',
+				'fr-CA': '/fr'
+			}
+		},
 		openGraph: {
 			title,
 			description,
