@@ -10,8 +10,6 @@ export default function Guide() {
 	const params = useParams()
 	const lang = params.lang as string
 
-	console.log(params)
-
 	const dict = getTranslation(lang)
 	const [requestForm, setRequestForm] = useAtom(requestFormAtom)
 
