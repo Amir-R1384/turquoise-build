@@ -22,20 +22,20 @@ export default async function Project({ params }: PageProps) {
 			<h1 className="text-4xl font-thin md:text-5xl text-left">{name}</h1>
 			<div className="text-lg md:text-xl mb-5">{date}</div>
 			<div className="grid grid-cols-1 gap-main mb-5">
-				<Image
-					className="mx-auto w-[100%]"
-					alt="Image of the project"
-					src={urlForImage(starterImages[0])}
-					width={500}
-					height={200}
-				/>
-				<Image
-					className="mx-auto w-[100%]"
-					alt="Image of the project"
-					src={urlForImage(starterImages[1])}
-					width={500}
-					height={200}
-				/>
+				{starterImages != null && starterImages.length > 0 && (
+					<div className="grid grid-cols-1 gap-main mb-5">
+						{starterImages.map((image: any) => (
+							<Image
+								key={image._key}
+								className="mx-auto w-[100%]"
+								alt="Image of the project"
+								src={urlForImage(image)}
+								width={500}
+								height={200}
+							/>
+						))}
+					</div>
+				)}
 			</div>
 			<section className="px-0 space-y-4 mb-5">
 				<div className="portable-text">
@@ -55,21 +55,6 @@ export default async function Project({ params }: PageProps) {
 							height={200}
 						/>
 					))}
-
-					{/* <Image
-					className="mx-auto w-[100%]"
-					alt="Image of the project"
-					src={urlForImage(moreImages[1])}
-					width={500}
-					height={200}
-				/>
-				<Image
-					className="mx-auto w-[100%]"
-					alt="Image of the project"
-					src={urlForImage(moreImages[2])}
-					width={500}
-					height={200}
-				/> */}
 				</div>
 			)}
 
