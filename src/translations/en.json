@@ -1,4 +1,7 @@
 {
+	"meta": {
+		"title": "Construction Turquoise - Montreal Renovation agency"
+	},
 	"titles": {
 		"about": "About Us",
 		"contact": "Contact Us",
@@ -16,7 +19,7 @@
 			"phone": "Telephone: "
 		},
 		"home": {
-			"h1": "Renovation agency",
+			"h1": "Montreal Renovation agency",
 			"h2": "Turn ideas into Home"
 		}
 	},

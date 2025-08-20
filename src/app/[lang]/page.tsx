@@ -13,7 +13,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 	const fullUrl = baseUrl + (canonicalPath === '/' ? '' : canonicalPath.slice(1))
 
 	return {
-		title: dict.pages.home.h2,
 		description: dict.seo.description,
 		alternates: {
 			canonical: canonicalPath,

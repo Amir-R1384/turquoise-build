@@ -1,4 +1,7 @@
 {
+	"meta": {
+		"title": "Construction Turquoise - Agence de rénovation à Montréal"
+	},
 	"titles": {
 		"about": "À propos de nous",
 		"contact": "Nous contacter",
@@ -16,7 +19,7 @@
 			"phone": "Téléphone: "
 		},
 		"home": {
-			"h1": "Agence de rénovation",
+			"h1": "Agence de rénovation à Montréal",
 			"h2": "Transformez des idées en maison"
 		}
 	},

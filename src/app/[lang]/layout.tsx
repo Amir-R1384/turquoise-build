@@ -22,11 +22,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 	return {
 		title: {
-			default: title,
-			template: `%s | ${title}`
+			default: dict.meta.title,
+			template: `%s | ${dict.meta.title}`
 		},
 		description,
-		keywords: [title, 'Renovation', 'Construction', 'Building', 'Montreal', 'Quebec', 'Canada'],
 		authors: [{ name: title }],
 		creator: title,
 		publisher: title,
