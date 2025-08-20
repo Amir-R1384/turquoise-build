@@ -4,7 +4,6 @@ import { Metadata } from 'next'
 import { getFAQs } from '../../../../sanity/lib/functions'
 import { title, defaultLang } from '../../../../appConfig'
 import { getAlternates, getOpenGraph, getTwitterCard } from '@/utils/metadata'
-import Link from 'next/link'
 import CustomLink from '@/components/CustomLink'
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

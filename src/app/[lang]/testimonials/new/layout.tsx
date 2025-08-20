@@ -2,7 +2,7 @@ import getTranslation from '@/translations'
 import { Metadata } from 'next'
 import { baseUrl, title, defaultLang } from '../../../../../appConfig'
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: any): Promise<Metadata> {
 	const { lang } = await params
 	const dict = getTranslation(lang)
 
@@ -41,6 +41,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 	}
 }
 
-export default function NewTestimonialLayout({ children }: { children: React.ReactNode }) {
-	return children
+export default async function NewTestimonialLayout({ children }: { children: React.ReactNode }) {
+	return <>{children}</>
 }
