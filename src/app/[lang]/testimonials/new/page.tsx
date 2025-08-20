@@ -66,7 +66,6 @@ export default function CreateTestimonial() {
 
 	return (
 		<div className="md-container">
-			<title>{dict.titles.newTestimonial}</title>
 			<div className="title mb-10">{dict.titles.newTestimonial}</div>
 			<div className="space-y-5">
 				<div className="flex flex-col gap-y-2">

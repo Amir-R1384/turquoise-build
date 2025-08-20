@@ -13,7 +13,7 @@ export default function Header({ lang }: { lang: string }) {
 	const [menuOpen, setMenuOpen] = useState(false)
 	const pathname = usePathname().match(lang !== defaultLang ? `(?<=${lang}).*` : `.*`)![0]
 	const [serviceMenuOpen, setServiceMenuOpen] = useState(false)
-	const navRef = useRef<HTMLUListElement | null>(null)
+	const navRef = useRef<HTMLDivElement | null>(null)
 
 	useEffect(() => {
 		setServiceMenuOpen(false)
@@ -45,29 +45,28 @@ export default function Header({ lang }: { lang: string }) {
 				</button>
 			</div>
 			<nav onMouseLeave={() => setServiceMenuOpen(false)}>
-				<ul
+				<div
 					ref={navRef}
 					className={` ${
 						menuOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'
 					} fixed flex h-[calc(100vh-theme(spacing.headerHeight))] flex-col gap-3 left-0 z-10 headerBlur top-headerHeight px-main pb-main lg:scale-y-100 lg:opacity-100 origin-top transition-all duration-500`}>
-					<div className="flex-1 flex flex-col gap-3">
-						<li>
-							<CustomLink
-								lang={lang}
-								className={linkStyles}
-								href="/projects"
-								style={{
-									fontWeight: pathname.startsWith('/projects') ? 300 : 200
-								}}>
-								{dict.titles.projects}
-							</CustomLink>
-						</li>
+					<ul className="flex-1 flex flex-col gap-3">
+						<CustomLink
+							lang={lang}
+							className={`${linkStyles} !text-left`}
+							href="/projects"
+							style={{
+								fontWeight: pathname.startsWith('/projects') ? 300 : 200
+							}}>
+							{dict.titles.projects}
+						</CustomLink>
+
 						<div
 							onMouseEnter={() => setServiceMenuOpen(true)}
 							onClick={() => setServiceMenuOpen(true)}
 							className="text-xl group">
 							Services
-							<div
+							<ul
 								style={{ maxHeight: serviceMenuOpen ? '4rem' : 0 }}
 								className="pl-3 pt-1 flex flex-col gap-y-1 overflow-hidden transition-[max-height] duration-700">
 								<li>
@@ -86,7 +85,7 @@ export default function Header({ lang }: { lang: string }) {
 										{dict.titles.build}
 									</CustomLink>
 								</li>
-							</div>
+							</ul>
 						</div>
 						<li>
 							<CustomLink
@@ -132,7 +131,7 @@ export default function Header({ lang }: { lang: string }) {
 								{dict.components.header.contact}
 							</CustomLink>
 						</li>
-					</div>
+					</ul>
 					<div className="space-y-4">
 						{/* <div className="flex gap-5 items-center mt-5">
 							<a href="#" target="_blank">
@@ -153,20 +152,24 @@ export default function Header({ lang }: { lang: string }) {
 							</a>
 						</div> */}
 						<div className="cursor-pointer border py-0.5 pl-2 pr-0 border-stone-500">
+							<label htmlFor="languageSelect" className="sr-only">
+								{dict.components.header.language || 'Language'}
+							</label>
 							<select
 								value={lang}
 								onChange={e => {
 									document.cookie = `lang=${e.target.value}; path=/`
 									window.location.reload()
 								}}
-								id="ratingSelect"
-								className="pr-6 text-lg mr-2 bg-transparent text-center outline-none appearance-none cursor-pointer">
+								id="languageSelect"
+								className="pr-6 text-lg mr-2 bg-transparent text-center outline-none appearance-none cursor-pointer"
+								aria-label={dict.components.header.language || 'Language'}>
 								<option value="en">English</option>
 								<option value="fr">Français</option>
 							</select>
 						</div>
 					</div>
-				</ul>
+				</div>
 			</nav>
 		</>
 	)

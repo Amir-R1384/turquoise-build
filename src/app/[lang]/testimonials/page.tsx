@@ -3,14 +3,31 @@ import Stars from '@/components/Stars'
 import getTranslation from '@/translations'
 import { Metadata } from 'next'
 import { getTestimonials } from '../../../../sanity/lib/functions'
+import { title, defaultLang } from '../../../../appConfig'
+import { getAlternates, getOpenGraph, getTwitterCard } from '@/utils/metadata'
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
 	const { lang } = await params
 
 	const dict = getTranslation(lang)
+	const canonicalPath = lang === defaultLang ? '/testimonials' : `/${lang}/testimonials`
+	const pageDescription = `${dict.titles.testimonial} - ${lang === 'fr' ? 'Découvrez les avis de nos clients satisfaits sur nos services de rénovation' : 'Read reviews from our satisfied clients about our renovation services'}.`
 
 	return {
-		title: dict.titles.testimonial
+		title: dict.titles.testimonial,
+		description: pageDescription,
+		alternates: getAlternates(canonicalPath, lang),
+		openGraph: getOpenGraph({
+			title: `${dict.titles.testimonial} | ${title}`,
+			description: pageDescription,
+			path: canonicalPath,
+			lang,
+			imageAlt: dict.titles.testimonial
+		}),
+		twitter: getTwitterCard({
+			title: `${dict.titles.testimonial} | ${title}`,
+			description: pageDescription
+		})
 	}
 }
 

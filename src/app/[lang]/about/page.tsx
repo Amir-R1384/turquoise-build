@@ -4,14 +4,33 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import { getGeneral } from '../../../../sanity/lib/functions'
 import { urlForImage } from '../../../../sanity/lib/image'
+import { title, defaultLang } from '../../../../appConfig'
+import { getAlternates, getOpenGraph, getTwitterCard, normalizePath } from '@/utils/metadata'
+import CustomLink from '@/components/CustomLink'
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
 	const { lang } = await params
 
 	const dict = getTranslation(lang)
 
+	const canonicalPath = lang === defaultLang ? '/about' : `/${lang}/about`
+	const pageDescription = `${dict.seo.description} ${dict.titles.about} - ${lang === 'fr' ? 'Rencontrez notre équipe expérimentée' : 'Meet our experienced team'}.`
+
 	return {
-		title: dict.titles.about
+		title: dict.titles.about,
+		description: pageDescription,
+		alternates: getAlternates(canonicalPath, lang),
+		openGraph: getOpenGraph({
+			title: `${dict.titles.about} | ${title}`,
+			description: pageDescription,
+			path: canonicalPath,
+			lang,
+			imageAlt: dict.titles.about
+		}),
+		twitter: getTwitterCard({
+			title: `${dict.titles.about} | ${title}`,
+			description: pageDescription
+		})
 	}
 }
 
@@ -44,6 +63,10 @@ export default async function About({ params }: PageProps) {
 			<div className="portable-text">
 				<PortableText value={aboutUsText} />
 			</div>
+
+			<CustomLink lang={lang} href="/" className="mt-10 button mx-auto block">
+				{dict.buttons.goHome}
+			</CustomLink>
 		</div>
 	)
 }

@@ -38,11 +38,15 @@ export default function CustomCheckbox({
 			</label>
 			{checked && withSelect ? (
 				<div className="relative flex items-center cursor-pointer">
+					<label htmlFor={'select-' + name} className="sr-only">
+						{name} select
+					</label>
 					<select
 						value={selectValue}
 						onChange={onSelectClick}
-						id="ratingSelect"
-						className="pr-6 text-lg mr-2 bg-transparent text-center outline-none appearance-none cursor-pointer">
+						id={'select-' + name}
+						className="pr-6 text-lg mr-2 bg-transparent text-center outline-none appearance-none cursor-pointer"
+						aria-label={name + ' select'}>
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>

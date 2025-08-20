@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import type { Dispatch, SetStateAction } from 'react'
 import { useEffect, useState } from 'react'
 
@@ -49,8 +48,7 @@ export default function ImageDisplayer() {
 	return (
 		<section className="h-[min(80vw,500px)] mt-10 relative w-full">
 			{imageArray.map((el, i) => (
-				<Link
-					href="/#"
+				<div
 					key={el}
 					style={{
 						transform: `translate(calc(-50% + ${
@@ -63,7 +61,7 @@ export default function ImageDisplayer() {
 									? 0.1
 									: 0,
 						transitionDuration: `${TRANSITION_DURATION}ms`,
-						backgroundImage: `url(/assets/images/${el}.jpg)`
+						backgroundImage: `url(/assets/images/${el}.webp)`
 					}}
 					className="absolute w-[min(90vw,600px)] bg-center bg-cover h-[min(80vw,500px)] top-1/2 left-1/2 origin-center transition-all"
 				/>

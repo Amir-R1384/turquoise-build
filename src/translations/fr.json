@@ -16,14 +16,16 @@
 			"phone": "Téléphone: "
 		},
 		"home": {
-			"ideasToHome": "Transformez des idées en maison"
+			"h1": "Agence de rénovation",
+			"h2": "Transformez des idées en maison"
 		}
 	},
 	"components": {
 		"header": {
 			"testimonials": "Témoignages",
 			"contact": "Contacter",
-			"about": "À propos"
+			"about": "À propos",
+			"language": "Langue"
 		},
 		"projectBanner": {
 			"more": "Plus à propos du projet"
@@ -54,7 +56,8 @@
 	"buttons": {
 		"submit": "Soumettre",
 		"addTestimonial": "Avez travaillé avec nous? Partagez votre opinion",
-		"getStarted": "Dites-nous de votre projet"
+		"goHome": "Retourner à la maison",
+		"getStarted": "Discutons de votre projet"
 	},
 	"messages": {
 		"error": "Quelque chose s'est mal passé. Veuillez réessayer plus tard.",

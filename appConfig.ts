@@ -1,6 +1,9 @@
+export const title = 'Construction Turquoise - Agence de rénovation'
+export const baseUrl = 'https://turquoisebuild.com'
+
 // Language
 export const langs: Lang[] = ['en', 'fr']
-export const defaultLang = 'en'
+export const defaultLang = 'fr'
 
 // Image displayer
 export const imageDisplayerBackgroundImagesNum = 5

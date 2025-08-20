@@ -1,14 +1,31 @@
 import getTranslation from '@/translations'
 import { Metadata } from 'next'
 import { getGeneral } from '../../../../sanity/lib/functions'
+import { title, defaultLang } from '../../../../appConfig'
+import { getAlternates, getOpenGraph, getTwitterCard } from '@/utils/metadata'
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
 	const { lang } = await params
 
 	const dict = getTranslation(lang)
+	const canonicalPath = lang === defaultLang ? '/contact' : `/${lang}/contact`
+	const pageDescription = `${dict.titles.contact} ${title} - ${lang === 'fr' ? 'Contactez-nous pour votre projet de rénovation à Montréal' : 'Contact us for your renovation project in Montreal'}.`
 
 	return {
-		title: dict.titles.contact
+		title: dict.titles.contact,
+		description: pageDescription,
+		alternates: getAlternates(canonicalPath, lang),
+		openGraph: getOpenGraph({
+			title: `${dict.titles.contact} | ${title}`,
+			description: pageDescription,
+			path: canonicalPath,
+			lang,
+			imageAlt: dict.titles.contact
+		}),
+		twitter: getTwitterCard({
+			title: `${dict.titles.contact} | ${title}`,
+			description: pageDescription
+		})
 	}
 }
 

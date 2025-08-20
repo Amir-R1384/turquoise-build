@@ -16,14 +16,16 @@
 			"phone": "Telephone: "
 		},
 		"home": {
-			"ideasToHome": "Turn ideas into Home"
+			"h1": "Renovation agency",
+			"h2": "Turn ideas into Home"
 		}
 	},
 	"components": {
 		"header": {
 			"testimonials": "Testimonials",
 			"contact": "Contact",
-			"about": "About Us"
+			"about": "About Us",
+			"language": "Language"
 		},
 		"projectBanner": {
 			"more": "More about this project"
@@ -54,6 +56,7 @@
 	"buttons": {
 		"submit": "Submit",
 		"addTestimonial": "Worked with us? Write your opinion",
+		"goHome": "Go home",
 		"getStarted": "Tell us about your project"
 	},
 	"messages": {
