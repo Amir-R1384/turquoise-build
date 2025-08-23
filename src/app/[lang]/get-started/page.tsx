@@ -1,6 +1,7 @@
 import getTranslation from '@/translations'
 import { Metadata } from 'next'
 import { baseUrl, title, defaultLang } from '../../../../appConfig'
+import { getOpenGraph } from '@/utils/metadata'
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
 	const { lang } = await params
@@ -24,15 +25,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 				'x-default': '/get-started'
 			}
 		},
-		openGraph: {
+		openGraph: getOpenGraph({
 			title: `${dict.titles.getStarted} | ${title}`,
 			description: pageDescription,
-			url: fullUrl,
-			siteName: title,
-			type: 'website',
-			locale: lang === 'fr' ? 'fr_CA' : 'en_CA',
-			alternateLocale: lang === 'fr' ? 'en_CA' : 'fr_CA'
-		},
+			path: canonicalPath,
+			lang,
+			imageAlt: dict.titles.getStarted
+		}),
 		twitter: {
 			card: 'summary_large_image',
 			title: `${dict.titles.getStarted} | ${title}`,

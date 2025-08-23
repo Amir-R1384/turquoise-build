@@ -3,7 +3,7 @@ import Main from '@/components/Main'
 import Wrapper from '@/components/Wrapper'
 import getTranslation from '@/translations'
 import type { Metadata } from 'next'
-import { title, defaultLang } from '../../../appConfig'
+import { title, defaultLang, baseUrl } from '../../../appConfig'
 import './globals.css'
 import { Raleway } from 'next/font/google'
 import { getAlternates, getOpenGraph, getTwitterCard, normalizePath } from '@/utils/metadata'
@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 	const canonicalPath = lang === defaultLang ? '/' : `/${lang}`
 
 	return {
+		metadataBase: new URL(baseUrl),
 		title: {
 			default: dict.meta.title,
 			template: `%s | ${dict.meta.title}`

@@ -56,10 +56,11 @@ export function getOpenGraph({
 	imageAlt?: string
 }) {
 	const url = getUrl(path)
+	console.log(url)
 	return {
 		title,
 		description,
-		url,
+		url: lang === defaultLang ? '/' : `//${lang}`,
 		siteName: siteTitle,
 		type: 'website' as const,
 		locale: lang === 'fr' ? 'fr_CA' : 'en_CA',
